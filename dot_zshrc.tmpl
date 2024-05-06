@@ -1,0 +1,15 @@
+eval "$(starship init zsh)"
+
+export EDITOR=nvim
+alias icat="kitten icat"
+
+{{ if eq .chezmoi.hostname "ml0221998" }}
+export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
+export PATH="/Users/nqxl/Library/Python3.9/bin:$PATH"
+{{ end }}
+
+{{ if eq .chezmoi.hostname "Nikolais-MacBook-Pro" }}
+export NEOVIM_ENV="home"
+{{ else }}
+export NEOVIM_ENV="work"
+{{ end }}

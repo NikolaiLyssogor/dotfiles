@@ -1,4 +1,0 @@
-eval "$(starship init zsh)"
-
-export EDITOR=nvim
-export NEOVIM_ENV="home"
