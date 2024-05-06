@@ -26,7 +26,7 @@ return {
 
       local function set_toggle_light_dark_theme()
         local home = os.getenv("HOME")
-        local filepath = home .. "/.config/nvim/.data/theme.txt"
+        local filepath = home .. "/.local/share/nvim/my-data/theme.txt"
         local readfile = io.open(filepath, "r")
 
         if readfile then
