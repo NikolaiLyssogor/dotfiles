@@ -1,0 +1,22 @@
+{{ if eq .chezmoi.hostname "Nikolais-MacBook-Pro" }}
+[core]
+    editor = nvim
+[user]
+	name = NikolaiLyssogor
+	email = nily9199@colorado.edu
+{{ else if eq .chezmoi.hostname "ml0221998" }}
+[core]
+    excludesfile = /Users/nqxl/.gitignore_global
+    editor = nvim
+[user]
+    name = NQXLCG
+    email = nikolai.lyssogor@capgroup.com
+{{ end }}
+
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[diff]
+    external = difft
