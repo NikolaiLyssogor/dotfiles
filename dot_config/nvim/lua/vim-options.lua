@@ -26,6 +26,8 @@ vim.api.nvim_set_keymap("n", "zh", "5zh", { noremap = true, silent = true })
 -- move to start/end of text from home row
 vim.api.nvim_set_keymap("n", "L", "$", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "H", "^", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "L", "$", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "H", "^", { noremap = true, silent = true })
 
 -- required by modicator but also nice to have
 vim.o.cursorline = true
