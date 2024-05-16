@@ -103,6 +103,8 @@ return {
         signs = true,
       })
 
+      vim.lsp.set_log_level("OFF")
+
       local function format()
         if vim.bo.filetype == "json" then
           vim.cmd(":%!jq .")
