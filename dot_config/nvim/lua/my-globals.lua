@@ -234,9 +234,10 @@ function M.get_codecompanion_opts()
 					mapping = "parameters",
 					type = "enum",
 					desc = "ID of the model to use.",
-					default = "deepseek-coder:33b",
+					default = "llama3:8b-instruct-fp16",
 					choices = {
-						"mistral:7b-instruct-v0.2-fp16",
+            "llama3:8b-instruct-fp16",
+						"qwen-32b",
 						"deepseek-coder:33b",
 					},
 				},
