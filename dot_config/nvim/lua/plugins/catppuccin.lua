@@ -35,7 +35,8 @@ return {
           if curr_theme == "dark" then
             vim.o.background = "light"
             vim.api.nvim_command("Catppuccin latte")
-            vim.api.nvim_set_hl(0, "CodeBlock", { bg = "#e2e2e8" })
+            -- vim.api.nvim_set_hl(0, "CodeBlock", { bg = "#e2e2e8" })
+            vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#e2e2e8" })
             vim.api.nvim_set_hl(0, "CodeCompanionTokens", { bg = "#ccd0da" })
             local writefile = io.open(filepath, "w+")
             if writefile then
@@ -47,7 +48,8 @@ return {
           elseif curr_theme == "light" then
             vim.o.background = "dark"
             vim.api.nvim_command("Catppuccin mocha")
-            vim.api.nvim_set_hl(0, "CodeBlock", { bg = "#262538" })
+            -- vim.api.nvim_set_hl(0, "CodeBlock", { bg = "#262538" })
+            vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#262538" })
             vim.api.nvim_set_hl(0, "CodeCompanionTokens", { bg = "#313244" })
             local writefile = io.open(filepath, "w+")
             if writefile then
@@ -76,12 +78,14 @@ return {
           if curr_theme == "dark" then
             vim.o.background = "dark"
             vim.api.nvim_command("Catppuccin mocha")
-            vim.api.nvim_set_hl(0, "CodeBlock", { bg = "#262538" })
+            -- vim.api.nvim_set_hl(0, "CodeBlock", { bg = "#262538" })
+            vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#262538" })
             vim.api.nvim_set_hl(0, "CodeCompanionTokens", { bg = "#313244" })
           elseif curr_theme == "light" then
             vim.o.background = "light"
             vim.api.nvim_command("Catppuccin latte")
-            vim.api.nvim_set_hl(0, "CodeBlock", { bg = "#e2e2e8" })
+            -- vim.api.nvim_set_hl(0, "CodeBlock", { bg = "#e2e2e8" })
+            vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#e2e2e8" })
             vim.api.nvim_set_hl(0, "CodeCompanionTokens", { bg = "#ccd0da" })
           else
             print("ERROR: Theme file has unknown value, defaulting to dark theme")
