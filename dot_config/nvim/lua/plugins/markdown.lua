@@ -1,24 +1,24 @@
 return {
-	{
-		"epwalsh/obsidian.nvim",
-		tag = "v3.7.8", -- recommended, use latest release instead of latest commit
-		pin = true,
-		lazy = true,
-		ft = { "markdown" },
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			local vault_path = require("my-globals").get_vault_path()
-
-			require("obsidian").setup({
-				workspaces = {
-					{
-						name = "work",
-						path = vault_path,
-					},
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	"epwalsh/obsidian.nvim",
+	-- 	tag = "v3.7.8", -- recommended, use latest release instead of latest commit
+	-- 	pin = true,
+	-- 	lazy = true,
+	-- 	ft = { "markdown" },
+	-- 	dependencies = { "nvim-lua/plenary.nvim" },
+	-- 	config = function()
+	-- 		local vault_path = require("my-globals").get_vault_path()
+	--
+	-- 		require("obsidian").setup({
+	-- 			workspaces = {
+	-- 				{
+	-- 					name = "work",
+	-- 					path = vault_path,
+	-- 				},
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"gaoDean/autolist.nvim",
 		commit = "5f70a5f99e96c8fe3069de042abd2a8ed2deb855",
