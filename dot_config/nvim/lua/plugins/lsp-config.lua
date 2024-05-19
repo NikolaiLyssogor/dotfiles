@@ -26,7 +26,7 @@ return {
           -- "codelldb",
           "bashls",
           "pyright",
-          "html",
+          "emmet_ls",
           "tsserver",
           -- "eslint",
           "lua_ls",
@@ -52,7 +52,7 @@ return {
       lspconfig.tsserver.setup({
         capabilities = capabilities,
       })
-      lspconfig.html.setup({
+      lspconfig.emmet_ls.setup({
         capabilities = capabilities,
       })
       lspconfig.eslint.setup({
