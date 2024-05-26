@@ -2,7 +2,6 @@ return {
 	{
 		"olimorris/codecompanion.nvim",
 		commit = "5f53f6f71c544f1e277cc6aba705f5843108a307",
-		pin = true,
 		event = "VeryLazy",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
