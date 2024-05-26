@@ -70,7 +70,7 @@ return {
 			right = {
 				{
 					ft = "codecompanion",
-					title = require("my-globals").get_codecompanion_opts().name,
+					title = os.getenv("NEOVIM_ENV") == "home" and "openai" or "ollama",
 					size = { width = 0.25 },
 				},
 			},
