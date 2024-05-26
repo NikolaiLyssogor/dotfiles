@@ -1,45 +1,58 @@
 return {
 	{
 		"olimorris/codecompanion.nvim",
-		commit = "44fae9b257078bc378e5c314e990ae8df3e56486",
+		commit = "5f53f6f71c544f1e277cc6aba705f5843108a307",
 		pin = true,
 		event = "VeryLazy",
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
-			"nvim-telescope/telescope.nvim", -- Optional
+			"nvim-telescope/telescope.nvim",
 			{
-				"stevearc/dressing.nvim", -- Optional: Improves the default Neovim UI
+				"stevearc/dressing.nvim",
 				opts = {},
 			},
 		},
 		config = function()
-			local cc_opts = require("my-globals").get_codecompanion_opts()
-			-- local adapter_name = my_globals.get_codecompanion_opts()
-			-- local env = my_globals.get_codecompanion_env()
-			-- local schema = my_globals.get_codecompanion_adapter_schema()
+			local neovim_env = os.getenv("NEOVIM_ENV")
+			local strategy = "ollama"
+			if neovim_env == "home" then
+				strategy = "openai"
+			end
 
 			require("codecompanion").setup({
 				adapters = {
-					chat = require("codecompanion.adapters").use(cc_opts.name, {
-						env = cc_opts.env,
-						schema = cc_opts.schema,
+					ollama = require("codecompanion.adapters").use("ollama", {
+						schema = {
+							model = {
+								default = "llama3:8b-instruct-fp16",
+							},
+						},
+					}),
+					openai = require("codecompanion.adapters").use("openai", {
+						env = {
+							api_key = 'cmd:gpg --decrypt --batch --passphrase " " /Users/nlyssogor/Documents/.openai_key.txt.gpg 2>/dev/null',
+						},
 					}),
 				},
-				send_code = false,
-				keymaps = {
-					["<C-s>"] = "keymaps.save", -- Save the chat buffer and trigger the API
-					["<C-c>"] = "keymaps.close", -- Close the chat buffer
-					["q"] = "keymaps.cancel_request", -- Cancel the currently streaming request
-					["gs"] = "keymaps.save_chat", -- Save the current chat
+				strategies = {
+					chat = strategy,
+					inline = strategy,
 				},
+				tools = {
+					["code_runner"] = {
+						enabled = false,
+					},
+				},
+				log_level = "ERROR",
+				send_code = false,
 			})
 
 			require("which-key").register({
 				l = {
 					name = "[l]anguage models",
 					a = { ":CodeCompanionActions<cr><esc>", "[a]ctions menu" },
-					t = { ":CodeCompanionToggle<cr>", "[t]oggle chat window" }, -- NOTE: Doesn't work as intended if formatting is run
+					t = { ":CodeCompanionToggle<cr>", "[t]oggle chat window" },
 				},
 			}, { mode = "n", prefix = "<leader>" })
 		end,
