@@ -12,6 +12,7 @@ return {
 				null_ls.builtins.formatting.shfmt,
 				null_ls.builtins.formatting.isort,
 				null_ls.builtins.formatting.clang_format,
+				null_ls.builtins.formatting.prettierd,
 			},
 		})
 	end,
