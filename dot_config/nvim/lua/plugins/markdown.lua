@@ -85,7 +85,7 @@ return {
 	},
 	{
 		"MeanderingProgrammer/markdown.nvim",
-		commit = "04cc47fe317c4f08daf0c4c2edb0e6836d936ba1",
+		tag = "v3.1.0",
 		pin = true,
 		name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
