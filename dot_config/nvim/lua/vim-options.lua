@@ -40,6 +40,17 @@ vim.keymap.set("n", "<c-j>", ":wincmd j<CR>")
 vim.keymap.set("n", "<c-h>", ":wincmd h<CR>")
 vim.keymap.set("n", "<c-l>", ":wincmd l<CR>")
 
+-- navigate tabs more easily
+vim.keymap.set("n", "1t", ":tabn1<cr>")
+vim.keymap.set("n", "2t", ":tabn2<cr>")
+vim.keymap.set("n", "3t", ":tabn3<cr>")
+vim.keymap.set("n", "4t", ":tabn4<cr>")
+vim.keymap.set("n", "5t", ":tabn5<cr>")
+vim.keymap.set("n", "6t", ":tabn6<cr>")
+vim.keymap.set("n", "7t", ":tabn7<cr>")
+vim.keymap.set("n", "8t", ":tabn8<cr>")
+vim.keymap.set("n", "9t", ":tabn9<cr>")
+
 -- set nerdfont
 vim.o.guifont = "JetBrainsMono Nerd Font:style=Regular,Regular:h12.5"
 
