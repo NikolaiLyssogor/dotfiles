@@ -24,3 +24,9 @@ bindkey -M vicmd 'y' vi-yank-xclip
 
 # for pipx
 export PATH="$PATH:/Users/nlyssogor/.local/bin"
+
+# docker completions
+fpath=($HOME/.docker/completions $fpath)
+fpath=($HOME/.config/lockey/completions $fpath)
+autoload -U compinit
+compinit
