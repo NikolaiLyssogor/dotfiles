@@ -1,8 +1,8 @@
 return {
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.6",
-		pin = true,
+		tag = "0.1.8",
+		-- pin = true,
 		dependencies = { "nvim-lua/plenary.nvim" },
 		config = function()
 			require("telescope").setup({
@@ -48,8 +48,8 @@ return {
 	},
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
-		commit = "9ef21b2e6bb6ebeaf349a0781745549bbb870d27",
-		pin = true,
+		commit = "cf48d4dfce44e0b9a2e19a008d6ec6ea6f01a83b",
+		-- pin = true,
 		build = "make",
 		config = function()
 			require("telescope").setup({

@@ -1,7 +1,7 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-    tag = "0.9.2",
+    commit = "176e4464736c1feca190d77f481ed5972b513516",
     pin = true,
 		build = ":TSUpdate",
 		config = function()

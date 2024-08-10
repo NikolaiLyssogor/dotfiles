@@ -24,7 +24,7 @@ return {
 					ollama = require("codecompanion.adapters").use("ollama", {
 						schema = {
 							model = {
-								default = "llama3:8b-instruct-fp16",
+								default = "llama3.1:8b-instruct-fp16",
 							},
 						},
 					}),

@@ -1,8 +1,8 @@
 return {
   {
     "rmagatti/auto-session",
-    commit = "64dc86e43c85f0062baafb0b607a6162efc99c91",
-    pin = true,
+    tag = "v2.5.0",
+    -- pin = true,
     enabled = true,
     config = function()
       require("auto-session").setup({

@@ -19,13 +19,13 @@ return {
 		event = "InsertEnter",
 		opts = {}, -- this is equalent to setup({}) function
 	},
-	{
-		"numToStr/Comment.nvim",
-		commit = "0236521ea582747b58869cb72f70ccfa967d2e89",
-		pin = true,
-		opts = {},
-		lazy = false,
-	},
+	-- {
+	-- 	"numToStr/Comment.nvim",
+	-- 	commit = "0236521ea582747b58869cb72f70ccfa967d2e89",
+	-- 	pin = true,
+	-- 	opts = {},
+	-- 	lazy = false,
+	-- },
 	{
 		"kylechui/nvim-surround",
 		tag = "v2.1.5",
@@ -112,6 +112,21 @@ return {
 					A = { "[A]lign with preview" },
 				},
 			}, { mode = "v", prefix = "<leader>" })
+		end,
+	},
+	{
+		"jinh0/eyeliner.nvim",
+		commit = "7385c1a29091b98ddde186ed2d460a1103643148",
+		pin = true,
+		config = function()
+			require("eyeliner").setup({
+				highlight_on_key = true, -- show highlights only after keypress
+				dim = false, -- dim all other characters if set to true (recommended!)
+				max_length = 9999, -- set the maximum number of characters eyeliner.nvim will check from
+				disabled_filetypes = {}, -- filetypes for which eyeliner should be disabled;
+				disabled_buftypes = {}, -- buftypes for which eyeliner should be disabled
+				default_keymaps = true, -- add eyeliner to f/F/t/T keymaps;
+			})
 		end,
 	},
 }

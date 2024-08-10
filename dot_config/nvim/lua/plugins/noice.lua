@@ -1,6 +1,6 @@
 return {
   "folke/noice.nvim",
-  tag = "v2.0.1",
+  tag = "v4.5.0",
   pin = true,
   event = "VeryLazy",
   dependencies = {

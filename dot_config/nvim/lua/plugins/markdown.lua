@@ -85,7 +85,7 @@ return {
 	},
 	{
 		"MeanderingProgrammer/markdown.nvim",
-		tag = "v3.1.0",
+		tag = "v6.0.0",
 		pin = true,
 		name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
@@ -109,88 +109,4 @@ return {
 			}, { mode = "n", prefix = "<leader>", expr = true })
 		end,
 	},
-	-- {
-	-- 	"lukas-reineke/headlines.nvim",
-	--    tag = "v4.0.1",
-	--    pin = true,
-	-- 	dependencies = "nvim-treesitter/nvim-treesitter",
-	-- 	ft = { "markdown", "codecompanion" },
-	-- 	config = function()
-	-- 		require("headlines").setup({
-	-- 			-- codeblock_highlight = false,
-	-- 			markdown = {
-	-- 				query = vim.treesitter.query.parse(
-	-- 					"markdown",
-	-- 					[[
-	--                (atx_heading [
-	--                    (atx_h1_marker)
-	--                    (atx_h2_marker)
-	--                    (atx_h3_marker)
-	--                    (atx_h4_marker)
-	--                    (atx_h5_marker)
-	--                    (atx_h6_marker)
-	--                ] @headline)
-	--
-	--                (thematic_break) @dash
-	--
-	--                (fenced_code_block) @codeblock
-	--            ]]
-	-- 				),
-	-- 				headline_highlights = { "Headline" },
-	-- 				bullet_highlights = {
-	-- 					"@text.title.1.marker.markdown",
-	-- 					"@text.title.2.marker.markdown",
-	-- 					"@text.title.3.marker.markdown",
-	-- 					"@text.title.4.marker.markdown",
-	-- 					"@text.title.5.marker.markdown",
-	-- 					"@text.title.6.marker.markdown",
-	-- 				},
-	-- 				bullets = { "", "󰺕", "", "" },
-	-- 				codeblock_highlight = "CodeBlock",
-	-- 				dash_highlight = "Dash",
-	-- 				dash_string = "-",
-	-- 				fat_headlines = false,
-	-- 				-- fat_headline_upper_string = "▃",
-	-- 				-- fat_headline_lower_string = "🬂",
-	-- 			},
-	--
-	-- 			codecompanion = {
-	-- 				query = vim.treesitter.query.parse(
-	-- 					"markdown",
-	-- 					[[
-	--                            (atx_heading [
-	--                                (atx_h1_marker)
-	--                                (atx_h2_marker)
-	--                                (atx_h3_marker)
-	--                                (atx_h4_marker)
-	--                                (atx_h5_marker)
-	--                                (atx_h6_marker)
-	--                            ] @headline)
-	--
-	--                            (thematic_break) @dash
-	--
-	--                            (fenced_code_block) @codeblock
-	--                        ]]
-	-- 				),
-	-- 				treesitter_language = "markdown",
-	-- 				headline_highlights = { "Headline" },
-	-- 				bullet_highlights = {
-	-- 					"@text.title.1.marker.markdown",
-	-- 					"@text.title.2.marker.markdown",
-	-- 					"@text.title.3.marker.markdown",
-	-- 					"@text.title.4.marker.markdown",
-	-- 					"@text.title.5.marker.markdown",
-	-- 					"@text.title.6.marker.markdown",
-	-- 				},
-	-- 				bullets = { "", "󰺕", "", "" },
-	-- 				codeblock_highlight = "CodeBlock",
-	-- 				dash_highlight = "Dash",
-	-- 				dash_string = "-",
-	-- 				fat_headlines = false,
-	-- 				-- fat_headline_upper_string = "▃",
-	-- 				-- fat_headline_lower_string = "🬂",
-	-- 			},
-	-- 		})
-	-- 	end,
-	-- },
 }

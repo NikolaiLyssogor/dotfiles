@@ -25,7 +25,7 @@ return {
 					-- "codelldb",
 					"bashls",
 					"pyright",
-
+					"ruff",
 					"emmet_ls",
 					"html",
 					"tsserver",
@@ -38,7 +38,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		commit = "e25c4cdecd3d58c0deccce0f372426c8c480bcce",
+		tag = "v0.1.8",
 		pin = true,
 		config = function()
 			require("neodev").setup({})
@@ -62,9 +62,6 @@ return {
 			lspconfig.bashls.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.ruff_lsp({
-				capabilities = capabilities,
-			})
 			lspconfig.clangd.setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
@@ -73,7 +70,9 @@ return {
 					"--offset-encoding=utf-16",
 				},
 			})
-
+			lspconfig.ruff_lsp.setup({
+				capabilities = capabilities,
+			})
 			lspconfig.pyright.setup({
 				on_attach = on_attach,
 				settings = {
