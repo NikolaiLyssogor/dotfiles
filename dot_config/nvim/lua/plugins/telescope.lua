@@ -48,5 +48,15 @@ return {
 		keys = {
 			{ "<leader>ff", "<cmd>Telescope frecency workspace=CWD<cr>", desc = "[f]ind files" },
 		},
+		config = function()
+			require("telescope").setup({
+				extensions = {
+					frecency = {
+            -- prevents the letter 'A' from being entered automatically on the first invocation
+						db_safe_mode = false,
+					},
+				},
+			})
+		end,
 	},
 }
