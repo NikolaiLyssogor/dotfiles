@@ -2,7 +2,7 @@ return {
   {
     "rmagatti/auto-session",
     tag = "v2.5.0",
-    -- pin = true,
+    pin = true,
     enabled = true,
     config = function()
       require("auto-session").setup({

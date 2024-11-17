@@ -109,4 +109,23 @@ return {
 			}, { mode = "n", prefix = "<leader>", expr = true })
 		end,
 	},
+	{
+		"iamcco/markdown-preview.nvim",
+		commit = "a923f5fc5ba36a3b17e289dc35dc17f66d0548ee",
+		pin = true,
+		ft = { "markdown" },
+		cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+		build = "cd app && npm install",
+		init = function()
+			vim.g.mkdp_filetypes = { "markdown" }
+		end,
+		config = function()
+			require("which-key").register({
+				m = {
+					name = "[m]arkdown",
+					p = { "<cmd>MarkdownPreviewToggle<cr>", "[p]review in browser" },
+				},
+			}, { mode = "n", prefix = "<leader>", expr = true })
+		end,
+	},
 }

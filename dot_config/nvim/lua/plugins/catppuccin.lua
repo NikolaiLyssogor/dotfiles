@@ -1,7 +1,7 @@
 return {
   {
     "catppuccin/nvim",
-    tag = "v1.6.0",
+    tag = "v1.9.0",
     pin = true,
     lazy = false,
     name = "catppuccin",

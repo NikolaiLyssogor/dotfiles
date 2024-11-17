@@ -14,18 +14,11 @@ return {
 	},
 	{
 		"windwp/nvim-autopairs",
-		commit = "dbfc1c34bed415906395db8303c71039b3a3ffb4",
+		commit = "ee297f215e95a60b01fde33275cc3c820eddeebe",
 		pin = true,
 		event = "InsertEnter",
 		opts = {}, -- this is equalent to setup({}) function
 	},
-	-- {
-	-- 	"numToStr/Comment.nvim",
-	-- 	commit = "0236521ea582747b58869cb72f70ccfa967d2e89",
-	-- 	pin = true,
-	-- 	opts = {},
-	-- 	lazy = false,
-	-- },
 	{
 		"kylechui/nvim-surround",
 		tag = "v2.1.5",

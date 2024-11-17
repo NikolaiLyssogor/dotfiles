@@ -2,34 +2,11 @@ return {
 	{
 		"nvim-telescope/telescope.nvim",
 		tag = "0.1.8",
-		-- pin = true,
+		pin = true,
 		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function()
-			require("telescope").setup({
-				defaults = {
-					file_ignore_patterns = {
-						"/Users/nqxl/Documents/summary-app/qrt-qh-csr-gen-ai-summary/application-source/test/docs",
-					},
-				},
-			})
-			local builtin = require("telescope.builtin")
-      local open_marks_picker_in_normal = function()
-        builtin.marks()
-        local key = vim.api.nvim_replace_termcodes("<Esc>", true, false, true)
-        vim.api.nvim_feedkeys(key, "n", false)
-      end
-			require("which-key").register({
-				f = {
-					name = "[f]iles",
-					f = { builtin.find_files, "[f]ind files" },
-					g = { builtin.live_grep, "live [g]rep" },
-				},
-				h = {
-					name = "[h]elpers",
-					m = { open_marks_picker_in_normal, "[m]arks" },
-				},
-			}, { mode = "n", prefix = "<leader>" })
-		end,
+		keys = {
+			{ "<leader>fg", "<cmd>Telescope live_grep<cr>", desc = "[g]rep" },
+		},
 	},
 	{
 		"nvim-telescope/telescope-ui-select.nvim",
@@ -49,7 +26,7 @@ return {
 	{
 		"nvim-telescope/telescope-fzf-native.nvim",
 		commit = "cf48d4dfce44e0b9a2e19a008d6ec6ea6f01a83b",
-		-- pin = true,
+		pin = true,
 		build = "make",
 		config = function()
 			require("telescope").setup({
@@ -65,5 +42,11 @@ return {
 			})
 			require("telescope").load_extension("fzf")
 		end,
+	},
+	{
+		"nvim-telescope/telescope-frecency.nvim",
+		keys = {
+			{ "<leader>ff", "<cmd>Telescope frecency workspace=CWD<cr>", desc = "[f]ind files" },
+		},
 	},
 }

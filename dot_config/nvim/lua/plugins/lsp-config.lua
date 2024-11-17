@@ -20,18 +20,15 @@ return {
 		config = function()
 			require("mason-lspconfig").setup({
 				ensure_installed = {
-					"ruff_lsp",
 					"clangd",
-					-- "codelldb",
 					"bashls",
 					"pyright",
-					"ruff",
-					"emmet_ls",
+					"ruff_lsp",
 					"html",
 					"tsserver",
-					-- "eslint",
+					"tailwindcss",
 					"lua_ls",
-					-- "shellcheck",
+					"rust_analyzer",
 				},
 			})
 		end,
@@ -43,7 +40,6 @@ return {
 		config = function()
 			require("neodev").setup({})
 			vim.lsp.set_log_level("debug")
-			-- local util = require("lspconfig.util")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")
 
@@ -53,15 +49,15 @@ return {
 			lspconfig.tsserver.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.html.setup({
-				capabilities = capabilities,
-			})
-			lspconfig.emmet_ls.setup({
+			lspconfig.tailwindcss.setup({
 				capabilities = capabilities,
 			})
 			lspconfig.bashls.setup({
 				capabilities = capabilities,
 			})
+      lspconfig.rust_analyzer.setup({
+        capabilities = capabilities
+      })
 			lspconfig.clangd.setup({
 				on_attach = on_attach,
 				capabilities = capabilities,

@@ -24,9 +24,9 @@ vim.api.nvim_set_keymap("n", "zl", "5zl", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "zh", "5zh", { noremap = true, silent = true })
 
 -- move to start/end of text from home row
-vim.api.nvim_set_keymap("n", "L", "$", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "L", "g_", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("n", "H", "^", { noremap = true, silent = true })
-vim.api.nvim_set_keymap("v", "L", "$", { noremap = true, silent = true })
+vim.api.nvim_set_keymap("v", "L", "g_", { noremap = true, silent = true })
 vim.api.nvim_set_keymap("v", "H", "^", { noremap = true, silent = true })
 
 -- required by modicator but also nice to have
@@ -35,10 +35,10 @@ vim.o.number = true
 vim.o.termguicolors = true
 
 -- Navigate vim panes better
-vim.keymap.set("n", "<c-k>", ":wincmd k<CR>")
-vim.keymap.set("n", "<c-j>", ":wincmd j<CR>")
-vim.keymap.set("n", "<c-h>", ":wincmd h<CR>")
-vim.keymap.set("n", "<c-l>", ":wincmd l<CR>")
+vim.keymap.set("n", "<c-k>", ":wincmd k<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<c-j>", ":wincmd j<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<c-h>", ":wincmd h<CR>", { noremap = true, silent = true })
+vim.keymap.set("n", "<c-l>", ":wincmd l<CR>", { noremap = true, silent = true })
 
 -- navigate tabs more easily
 vim.keymap.set("n", "1t", ":tabn1<cr>")
@@ -79,7 +79,7 @@ local function set_webdev_settings()
 end
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "lua", "html", "css", "javascript", "typescript" },
+	pattern = { "lua", "html", "css", "javascript", "typescript", "typescriptreact" },
 	callback = set_webdev_settings,
 })
 

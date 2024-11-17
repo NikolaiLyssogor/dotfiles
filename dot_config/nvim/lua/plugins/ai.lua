@@ -1,60 +1,59 @@
 return {
 	{
 		"olimorris/codecompanion.nvim",
-		commit = "5f53f6f71c544f1e277cc6aba705f5843108a307",
+		tag = "v9.1.0",
 		event = "VeryLazy",
+		pin = true,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
+			"hrsh7th/nvim-cmp",
 			"nvim-telescope/telescope.nvim",
 			{
 				"stevearc/dressing.nvim",
 				opts = {},
 			},
 		},
-		config = function()
-			local neovim_env = os.getenv("NEOVIM_ENV")
-			local strategy = "ollama"
-			if neovim_env == "home" then
-				strategy = "openai"
-			end
+		keys = {
+			{ "<leader>lc", "<cmd>CodeCompanionChat Toggle<cr>", desc = "[c]hat window toggle" },
+			{
+				"<leader>la",
+				"<cmd>CodeCompanionChat Add<cr>",
+				mode = "v",
+				desc = "[a]dd visual selection to chat",
+			},
+		},
+		config = {
+			strategies = {
+				chat = { adapter = "openai" },
+				inline = { adapter = "openai" },
+			},
+			adapters = {
+				openai = function()
+					local home = os.getenv("HOME")
 
-			require("codecompanion").setup({
-				adapters = {
-					ollama = require("codecompanion.adapters").use("ollama", {
-						schema = {
-							model = {
-								default = "llama3.1:8b-instruct-fp16",
-							},
-						},
-					}),
-					openai = require("codecompanion.adapters").use("openai", {
+					local url = home == "/Users/nlyssogor" and "https://api.openai.com/v1/chat/completions"
+						or "https://apim-prd-quanthub-wus-3.azure-api.net/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview"
+
+					return require("codecompanion.adapters").extend("openai", {
+						url = url,
 						env = {
-							api_key = 'cmd:gpg --decrypt --batch --passphrase " " /Users/nlyssogor/Documents/.openai_key.txt.gpg 2>/dev/null',
+							api_key = string.format(
+								'cmd:gpg --decrypt --batch --passphrase " " %s/Documents/secrets/openai-key.txt.gpg 2>/dev/null',
+								home
+							),
 						},
-					}),
-				},
-				strategies = {
-					chat = strategy,
-					inline = strategy,
-				},
-				tools = {
-					["code_runner"] = {
-						enabled = false,
-					},
-				},
-				log_level = "ERROR",
-				send_code = false,
-			})
-
-			require("which-key").register({
-				l = {
-					name = "[l]anguage models",
-					a = { ":CodeCompanionActions<cr><esc>", "[a]ctions menu" },
-					t = { ":CodeCompanionToggle<cr>", "[t]oggle chat window" },
-				},
-			}, { mode = "n", prefix = "<leader>" })
-		end,
+						headers = {
+							["Content-Type"] = "application/json",
+							["api-key"] = "${api_key}",
+						},
+					})
+				end,
+			},
+			opts = {
+				log_level = "DEBUG",
+			},
+		},
 	},
 	{
 		"folke/edgy.nvim",
@@ -69,7 +68,7 @@ return {
 			right = {
 				{
 					ft = "codecompanion",
-					title = os.getenv("NEOVIM_ENV") == "home" and "openai" or "ollama",
+					title = "openai",
 					size = { width = 0.25 },
 				},
 			},
