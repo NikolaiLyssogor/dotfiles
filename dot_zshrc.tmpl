@@ -34,5 +34,6 @@ compinit
 # specify dir for python cache
 export PYTHONPYCACHEPREFIX="$HOME/.cache/pycache/"
 
-# fzf completions
+# fzf config
 source <(fzf --zsh)
+export FZF_ALT_C_COMMAND="fd --type d --no-ignore-vcs --exclude target --exclude node_modules --exclude .git . $HOME/Documents/"
