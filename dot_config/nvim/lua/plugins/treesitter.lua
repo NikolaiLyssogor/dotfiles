@@ -8,7 +8,6 @@ return {
 			local config = require("nvim-treesitter.configs")
 			config.setup({
 				ensure_installed = {
-					"dockerfile",
 					"javascript",
 					"typescript",
 					"tsx",
@@ -21,7 +20,7 @@ return {
           "rust",
 					"yaml",
 				},
-				auto_install = true,
+				auto_install = false,
 				highlight = { enable = true },
 				indent = { enable = true },
 			})
