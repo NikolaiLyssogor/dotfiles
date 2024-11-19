@@ -47,6 +47,9 @@ return {
 		dependencies = {
 			{ "kkharji/sqlite.lua", module = "sqlite" },
 		},
+		keys = {
+			{ "<leader>hc", "<cmd>Telescope neoclip a extra=star,plus,b<cr><esc>", desc = "[c]lipboard history" },
+		},
 		config = function()
 			require("neoclip").setup({
 				enable_persistent_history = true,
@@ -56,13 +59,6 @@ return {
 					move_to_front = true,
 				},
 			})
-
-			require("which-key").register({
-				h = {
-					name = "[h]elpers",
-					c = { ":Telescope neoclip a extra=star,plus,b<cr><esc>", "[c]lipboard history" },
-				},
-			}, { mode = "n", prefix = "<leader>" })
 		end,
 	},
 	{

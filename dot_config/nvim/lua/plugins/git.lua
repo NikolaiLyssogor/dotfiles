@@ -1,20 +1,16 @@
 return {
-  {
-    "lewis6991/gitsigns.nvim",
-    commit = "c097cb255096f333e14d341082a84f572b394fa2",
-    pin = true,
-    config = function()
-      local gitsigns = require("gitsigns")
-      gitsigns.setup()
-      require("which-key").register({
-        g = {
-          name = "[g]it",
-          d = { gitsigns.preview_hunk, "[d]iff preview" },
-          r = { gitsigns.reset_hunk, "[r]eset hunk" },
-          n = { "<cmd>Gitsigns next_hunk<CR>", "[n]ext hunk"},
-          p = { "<cmd>Gitsigns prev_hunk<CR>", "[p]revious hunk"},
-        },
-      }, { mode = "n", prefix = "<leader>" })
-    end,
-  },
+	{
+		"lewis6991/gitsigns.nvim",
+		commit = "c097cb255096f333e14d341082a84f572b394fa2",
+		pin = true,
+		keys = {
+			{ "<leader>gd", "<cmd>Gitsigns preview_hunk<CR>", desc = "[d]iff preview" },
+			{ "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", desc = "[r]eset hunk" },
+			{ "<leader>gn", "<cmd>Gitsigns next_hunk<CR>", desc = "[n]ext hunk" },
+			{ "<leader>gp", "<cmd>Gitsigns prev_hunk<CR>", desc = "[p]revious hunk" },
+		},
+		config = function()
+			require("gitsigns").setup()
+		end,
+	},
 }

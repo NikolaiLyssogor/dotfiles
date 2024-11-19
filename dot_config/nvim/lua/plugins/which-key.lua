@@ -11,11 +11,16 @@ return {
 
 		-- global which-key bindings
 		which_key.register({
-			l = { name = "[l]anguage models" },
+			c = { name = "[c]ode" },
+			f = { name = "[f]iles" },
+			g = { name = "[g]it" },
 			h = {
 				name = "[h]elpers",
 				n = { ":messages<cr>", "[n]otification history" },
 			},
+			l = { name = "[l]anguage models" },
+			m = { name = "[m]arkdown" },
+			s = { name = "[s]essions" },
 		}, { mode = "n", prefix = "<leader>" })
 	end,
 }

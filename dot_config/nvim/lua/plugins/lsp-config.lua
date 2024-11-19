@@ -37,6 +37,36 @@ return {
 		"neovim/nvim-lspconfig",
 		tag = "v0.1.8",
 		pin = true,
+		keys = {
+			{ "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "code [a]ction" },
+			{ "<leader>cc", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "show diagnosti[c]s" },
+			{ "<leader>cd", vim.lsp.buf.definition, desc = "[d]efinition/declaration toggle" },
+			{
+				"<leader>cf",
+				function()
+					if vim.bo.filetype == "json" then
+						vim.cmd(":%!jq .")
+					else
+						vim.lsp.buf.format()
+					end
+				end,
+				desc = "[f]ormat code",
+			},
+			{ "<leader>ch", "<cmd>lua vim.lsp.buf.hover()<cr>", desc = "[h]over" },
+			-- D = { vim.lsp.buf.declaration, "[D]eclaration" },
+			{
+				"<leader>ci",
+				"<cmd>Telescope lsp_implementations<cr><esc>",
+				desc = "[i]mplementation",
+			},
+			{ "<leader>cn", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "re[n]ame" },
+			{ "<leader>cr", "<cmd>lua require('telescope.builtin').lsp_references()<cr><esc>", desc = "[r]eferences" },
+			{
+				"<leader>ct",
+				"<cmd>lua vim.lsp.buf.type_definition()<cr>",
+				desc = "[t]ype definition",
+			},
+		},
 		config = function()
 			require("neodev").setup({})
 			vim.lsp.set_log_level("debug")
@@ -55,9 +85,9 @@ return {
 			lspconfig.bashls.setup({
 				capabilities = capabilities,
 			})
-      lspconfig.rust_analyzer.setup({
-        capabilities = capabilities
-      })
+			lspconfig.rust_analyzer.setup({
+				capabilities = capabilities,
+			})
 			lspconfig.clangd.setup({
 				on_attach = on_attach,
 				capabilities = capabilities,
@@ -103,31 +133,6 @@ return {
 			})
 
 			vim.lsp.set_log_level("OFF")
-
-			local function format()
-				if vim.bo.filetype == "json" then
-					vim.cmd(":%!jq .")
-				else
-					vim.lsp.buf.format()
-				end
-			end
-
-			-- vim.keymap.set("i", "<C-k>", vim.lsp.buf.signature_help)
-			require("which-key").register({
-				c = {
-					name = "[c]ode",
-					a = { ":lua vim.lsp.buf.code_action()<cr>", "code [a]ction" },
-					c = { ":lua vim.diagnostic.open_float()<cr>", "show diagnosti[c]s" },
-					d = { vim.lsp.buf.definition, "[d]efinition/declaration toggle" },
-					f = { format, "[f]ormat code" },
-					h = { ":lua vim.lsp.buf.hover()<cr>", "[h]over" },
-					-- D = { vim.lsp.buf.declaration, "[D]eclaration" },
-					-- i = { ":lua vim.lsp.buf.implementation()<cr>", "[i]mplementation" },
-					n = { ":lua vim.lsp.buf.rename()<cr>", "re[n]ame" },
-					r = { ":lua require('telescope.builtin').lsp_references()<cr><esc>", "[r]eferences" },
-					t = { ":lua vim.lsp.buf.type_definition()<cr>", "[t]ype definition" },
-				},
-			}, { mode = "n", prefix = "<leader>" })
 		end,
 	},
 }

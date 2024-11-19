@@ -73,14 +73,6 @@ return {
 			vim.keymap.set("n", "O", "O<cmd>AutolistNewBulletBefore<cr>")
 			vim.keymap.set("n", "<CR>", "<cmd>AutolistToggleCheckbox<cr><CR>")
 			vim.keymap.set("n", "<C-r>", "<cmd>AutolistRecalculate<cr>")
-
-			require("which-key").register({
-				o = {
-					name = "[o]bsidian",
-					n = { autolist.cycle_next_dr, "[n]ext list style" },
-					p = { autolist.cycle_next_dr, "[p]revious list style" },
-				},
-			}, { mode = "n", prefix = "<leader>", expr = true })
 		end,
 	},
 	{
@@ -91,22 +83,9 @@ return {
 		dependencies = { "nvim-treesitter/nvim-treesitter" },
 		ft = { "markdown", "codecompanion" },
 		config = function()
-			local render_markdown = require("render-markdown")
-			render_markdown.setup({
+			require("render-markdown").setup({
 				file_types = { "markdown", "codecompanion" },
 			})
-
-			local render_markdown_toggle = function()
-				render_markdown.toggle()
-				vim.api.nvim_feedkeys("hl", "n", true)
-			end
-
-			require("which-key").register({
-				m = {
-					name = "[m]arkdown",
-					t = { render_markdown_toggle, "[t]oggle formatting" },
-				},
-			}, { mode = "n", prefix = "<leader>", expr = true })
 		end,
 	},
 	{
@@ -118,14 +97,6 @@ return {
 		build = "cd app && npm install",
 		init = function()
 			vim.g.mkdp_filetypes = { "markdown" }
-		end,
-		config = function()
-			require("which-key").register({
-				m = {
-					name = "[m]arkdown",
-					p = { "<cmd>MarkdownPreviewToggle<cr>", "[p]review in browser" },
-				},
-			}, { mode = "n", prefix = "<leader>", expr = true })
 		end,
 	},
 }
