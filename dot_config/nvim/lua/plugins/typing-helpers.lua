@@ -88,26 +88,6 @@ return {
 		end,
 	},
 	{
-		"echasnovski/mini.align",
-		version = "*",
-		pin = true,
-		config = function()
-			require("mini.align").setup({
-				mappings = {
-					start = " ha",
-					start_with_preview = " hA",
-				},
-			})
-			require("which-key").register({
-				h = {
-					name = "[h]elpers",
-					a = { "[a]lign" },
-					A = { "[A]lign with preview" },
-				},
-			}, { mode = "v", prefix = "<leader>" })
-		end,
-	},
-	{
 		"jinh0/eyeliner.nvim",
 		commit = "7385c1a29091b98ddde186ed2d460a1103643148",
 		pin = true,
