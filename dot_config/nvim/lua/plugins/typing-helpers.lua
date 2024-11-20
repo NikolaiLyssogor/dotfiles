@@ -14,8 +14,8 @@ return {
 	},
 	{
 		"windwp/nvim-autopairs",
-		commit = "ee297f215e95a60b01fde33275cc3c820eddeebe",
-		pin = true,
+		commit = "b464658e9b880f463b9f7e6ccddd93fb0013f559",
+		-- pin = true,
 		event = "InsertEnter",
 		opts = {}, -- this is equalent to setup({}) function
 	},

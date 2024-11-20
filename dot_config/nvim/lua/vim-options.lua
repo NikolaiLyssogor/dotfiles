@@ -133,3 +133,6 @@ vim.api.nvim_set_keymap(
 	"<cmd>CompilerToggleResults<cr>",
 	{ noremap = true, silent = true, desc = "[t]oggle build history" }
 )
+
+-- unmap this to avoidconflict with nvim-autopairs
+vim.cmd([[let g:completion_confirm_key = ""]])
