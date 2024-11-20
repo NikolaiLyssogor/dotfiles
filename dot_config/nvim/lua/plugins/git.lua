@@ -3,6 +3,7 @@ return {
 		"lewis6991/gitsigns.nvim",
 		commit = "c097cb255096f333e14d341082a84f572b394fa2",
 		pin = true,
+    lazy = false,
 		keys = {
 			{ "<leader>gd", "<cmd>Gitsigns preview_hunk<CR>", desc = "[d]iff preview" },
 			{ "<leader>gr", "<cmd>Gitsigns reset_hunk<CR>", desc = "[r]eset hunk" },

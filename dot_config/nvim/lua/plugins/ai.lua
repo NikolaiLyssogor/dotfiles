@@ -23,7 +23,7 @@ return {
 				desc = "[a]dd visual selection to chat",
 			},
 		},
-		config = {
+		opts = {
 			strategies = {
 				chat = { adapter = "openai" },
 				inline = { adapter = "openai" },
