@@ -1,0 +1,12 @@
+theme = dark:catppuccin-mocha,light:catppuccin-latte
+font-family = "JetBrainsMono Nerd Font Mono"
+font-size = 13
+window-padding-y = 0
+font-thicken
+scrollback-limit = 40000000
+
+# adjust split sizes
+keybind = cmd+l=resize_split:right,10
+keybind = cmd+h=resize_split:left,10
+keybind = cmd+L=resize_split:up,10
+keybind = cmd+H=resize_split:down,10
