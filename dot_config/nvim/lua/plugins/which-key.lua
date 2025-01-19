@@ -20,6 +20,7 @@ return {
 			},
 			l = { name = "[l]anguage models" },
 			m = { name = "[m]arkdown" },
+			r = { name = "[r]sync" },
 			s = { name = "[s]essions" },
 		}, { mode = "n", prefix = "<leader>" })
 	end,
