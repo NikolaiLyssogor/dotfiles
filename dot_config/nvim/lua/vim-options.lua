@@ -136,3 +136,6 @@ vim.api.nvim_set_keymap(
 
 -- unmap this to avoidconflict with nvim-autopairs
 vim.cmd([[let g:completion_confirm_key = ""]])
+
+-- don't show mode on command line
+vim.o.showmode = false
