@@ -139,3 +139,6 @@ vim.cmd([[let g:completion_confirm_key = ""]])
 
 -- don't show mode on command line
 vim.o.showmode = false
+
+-- always use block cursor
+vim.opt.guicursor = "n-v-c:block"
