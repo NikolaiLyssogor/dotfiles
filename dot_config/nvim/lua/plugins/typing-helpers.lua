@@ -1,18 +1,5 @@
 return {
 	{
-		"lukas-reineke/indent-blankline.nvim",
-		tag = "v3.5.4",
-		pin = true,
-		config = function()
-			require("ibl").setup({
-				scope = {
-					enabled = false,
-				},
-				exclude = { filetypes = { "codecompanion", "markdown" } },
-			})
-		end,
-	},
-	{
 		"windwp/nvim-autopairs",
 		commit = "b464658e9b880f463b9f7e6ccddd93fb0013f559",
 		pin = true,
@@ -62,26 +49,13 @@ return {
 		end,
 	},
 	{
-		"karb94/neoscroll.nvim",
-		commit = "21d52973bde32db998fc8b6590f87eb3c3c6d8e4",
+		"folke/snacks.nvim",
+		tag = "v2.14.0",
 		pin = true,
-		config = function()
-			require("neoscroll").setup({
-				-- All these keys will be mapped to their corresponding default scrolling animation
-				-- mappings = { "<C-u>", "<C-d>", "<C-b>", "<C-f>", "<C-y>", "<C-e>", "zt", "zz", "zb" },
-				mappings = { "<C-y>", "<C-e>", "<C-u>", "<C-d>", "zt", "zz", "zb" },
-				hide_cursor = false, -- Hide cursor while scrolling
-				stop_eof = true, -- Stop at <EOF> when scrolling downwards
-				respect_scrolloff = false, -- Stop scrolling when the cursor reaches the scrolloff margin of the file
-				cursor_scrolls_alone = true, -- The cursor will keep on scrolling even if the window cannot scroll further
-				easing_function = "quadratic", -- Default easing function [quadratic, cubic, quartic, quintic, circular, sine]
-				pre_hook = function()
-					vim.wo.scroll = 7
-				end, -- Function to run before the scrolling animation starts
-				post_hook = nil, -- Function to run after the scrolling animation ends
-				performance_mode = false, -- Disable "Performance Mode" on all buffers.
-			})
-		end,
+		opts = {
+			scroll = {},
+			indent = { animate = { enabled = false }, scope = { enabled = false } },
+		},
 	},
 	{
 		"jinh0/eyeliner.nvim",

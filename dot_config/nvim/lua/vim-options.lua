@@ -96,6 +96,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = { "*codecompanion*", "*.md" },
 	callback = function()
+    vim.wo.smoothscroll = true
 		vim.opt_local.wrap = true
 		vim.opt_local.linebreak = true
 		vim.opt_local.breakindent = true
@@ -142,3 +143,9 @@ vim.o.showmode = false
 
 -- always use block cursor
 vim.opt.guicursor = "n-v-c:block"
+
+-- Remap Ctrl-e to move cursor 10 lines down
+vim.api.nvim_set_keymap('n', '<C-e>', '10j', { noremap = true, silent = true })
+
+-- Remap Ctrl-y to move cursor 10 lines up
+vim.api.nvim_set_keymap('n', '<C-y>', '10k', { noremap = true, silent = true })
