@@ -10,3 +10,5 @@ keybind = cmd+l=resize_split:right,10
 keybind = cmd+h=resize_split:left,10
 keybind = cmd+L=resize_split:up,10
 keybind = cmd+H=resize_split:down,10
+
+mouse-hide-while-typing = true
