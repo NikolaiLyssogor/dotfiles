@@ -2,7 +2,6 @@ return {
 	{
 		"olimorris/codecompanion.nvim",
 		tag = "v9.9.1",
-		event = "VeryLazy",
 		pin = true,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
@@ -59,7 +58,6 @@ return {
 		"folke/edgy.nvim",
 		tag = "v1.8.4",
 		pin = true,
-		event = "VeryLazy",
 		init = function()
 			vim.opt.laststatus = 3
 			vim.opt.splitkeep = "screen"

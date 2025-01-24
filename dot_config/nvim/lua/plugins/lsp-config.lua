@@ -1,11 +1,5 @@
 return {
 	{
-		"folke/neodev.nvim",
-		tag = "v2.5.2",
-		pin = true,
-		opts = {},
-	},
-	{
 		"williamboman/mason.nvim",
 		tag = "v1.10.0",
 		pin = true,
@@ -68,7 +62,6 @@ return {
 			},
 		},
 		config = function()
-			require("neodev").setup({})
 			vim.lsp.set_log_level("debug")
 			local capabilities = require("cmp_nvim_lsp").default_capabilities()
 			local lspconfig = require("lspconfig")

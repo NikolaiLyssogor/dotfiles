@@ -2,7 +2,6 @@ return {
 	"danymat/neogen",
 	tag = "2.17.1",
 	pin = true,
-	event = "VeryLazy",
 	keys = {
 		{ "<leader>cD", ":Neogen<cr>", desc = "generate [D]ocstring" },
 	},
