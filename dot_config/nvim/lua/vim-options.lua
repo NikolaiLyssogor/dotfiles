@@ -145,7 +145,13 @@ vim.o.showmode = false
 vim.opt.guicursor = "n-v-c:block"
 
 -- Remap Ctrl-e to move cursor 10 lines down
-vim.api.nvim_set_keymap('n', '<C-e>', '10j', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-e>', '10<C-e>', { noremap = true, silent = true })
 
 -- Remap Ctrl-y to move cursor 10 lines up
-vim.api.nvim_set_keymap('n', '<C-y>', '10k', { noremap = true, silent = true })
+vim.api.nvim_set_keymap('n', '<C-y>', '10<C-y>', { noremap = true, silent = true })
+
+-- Remap Ctrl-d to move cursor 10 lines down
+vim.api.nvim_set_keymap('n', '<C-d>', '10<C-d>', { noremap = true, silent = true })
+
+-- Remap Ctrl-u to move cursor 10 lines up
+vim.api.nvim_set_keymap('n', '<C-u>', '10<C-u>', { noremap = true, silent = true })
