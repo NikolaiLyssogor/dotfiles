@@ -2,8 +2,7 @@ return {
   "stevearc/aerial.nvim",
   commit = "24ebacab5821107c50f628e8e7774f105c08fe9b",
   pin = true,
-  event = "VeryLazy",
-  dependenciesc = {
+  dependencies = {
     "nvim-treesitter/nvim-treesitter",
     "nvim-tree/nvim-web-devicons",
   },
