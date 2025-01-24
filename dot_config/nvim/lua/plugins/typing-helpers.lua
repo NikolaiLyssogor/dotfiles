@@ -28,27 +28,6 @@ return {
 		opts = {},
 	},
 	{
-		"AckslD/nvim-neoclip.lua",
-		commit = "798cd0592a81c185465db3a091a0ff8a21af60fd",
-		pin = true,
-		dependencies = {
-			{ "kkharji/sqlite.lua", module = "sqlite" },
-		},
-		keys = {
-			{ "<leader>hc", "<cmd>Telescope neoclip a extra=star,plus,b<cr><esc>", desc = "[c]lipboard history" },
-		},
-		config = function()
-			require("neoclip").setup({
-				enable_persistent_history = true,
-				history = 100,
-				enable_macro_history = false,
-				on_select = {
-					move_to_front = true,
-				},
-			})
-		end,
-	},
-	{
 		"folke/snacks.nvim",
 		tag = "v2.14.0",
 		pin = true,
