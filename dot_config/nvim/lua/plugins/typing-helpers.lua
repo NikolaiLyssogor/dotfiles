@@ -18,16 +18,6 @@ return {
 		end,
 	},
 	{
-		"mawkler/modicator.nvim",
-		commit = "780ea1e98c9bee8f3816685213b0aac42b34cd75",
-		pin = true,
-		dependencies = "catppuccin/nvim", -- Add your colorscheme plugin here
-		config = function()
-			require("modicator").setup()
-		end,
-		opts = {},
-	},
-	{
 		"folke/snacks.nvim",
 		tag = "v2.14.0",
 		pin = true,
