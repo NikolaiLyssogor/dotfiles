@@ -73,11 +73,11 @@ return {
 			animate = { enabled = false },
 			keys = {
 				-- increase width
-				["<c-=>"] = function(win)
+				["="] = function(win)
 					win:resize("width", 2)
 				end,
 				-- decrease width
-				["<c-->"] = function(win)
+				["-"] = function(win)
 					win:resize("width", -2)
 				end,
 			},
