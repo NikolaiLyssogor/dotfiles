@@ -1,12 +1,15 @@
 return {
   {
     "catppuccin/nvim",
-    tag = "v1.9.0",
+    commit = "f67b886d65a029f12ffa298701fb8f1efd89295d",
     pin = true,
     lazy = false,
     name = "catppuccin",
     priority = 1000,
     opts = {
+      integrations = {
+        blink_cmp = true,
+      },
       color_overrides = {
         latte = {
           green = "#1a8c00",
@@ -21,8 +24,8 @@ return {
         },
       },
     },
-    config = function(_, opts)
-      require("catppuccin").setup(opts)
+    config = function()
+      require("catppuccin").setup()
 
       local function set_toggle_light_dark_theme()
         local home = os.getenv("HOME")

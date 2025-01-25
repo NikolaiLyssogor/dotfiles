@@ -31,6 +31,7 @@ return {
 		"neovim/nvim-lspconfig",
 		tag = "v0.1.8",
 		pin = true,
+		dependencies = { "saghen/blink.cmp" },
 		keys = {
 			{ "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "code [a]ction" },
 			{ "<leader>cc", "<cmd>lua vim.diagnostic.open_float()<cr>", desc = "show diagnosti[c]s" },
@@ -63,7 +64,7 @@ return {
 		},
 		config = function()
 			vim.lsp.set_log_level("debug")
-			local capabilities = require("cmp_nvim_lsp").default_capabilities()
+			local capabilities = require('blink.cmp').get_lsp_capabilities()
 			local lspconfig = require("lspconfig")
 
 			lspconfig.lua_ls.setup({
