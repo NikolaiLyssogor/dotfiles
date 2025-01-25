@@ -23,7 +23,26 @@ return {
 		pin = true,
 		opts = {
 			scroll = {},
-			indent = { animate = { enabled = false }, scope = { enabled = false } },
+			indent = {
+				animate = { enabled = false },
+				scope = { enabled = false },
+				filter = function(buf)
+					-- disable indent guides for these filetypes
+					local disabled_filetypes = { "markdown", "codecompanion" }
+					local cur_filetype = vim.api.nvim_buf_get_option(buf, "filetype")
+
+					for _, ft in ipairs(disabled_filetypes) do
+						if cur_filetype == ft then
+							return false
+						end
+					end
+
+					-- original filter function code
+					return vim.g.snacks_indent ~= false
+						and vim.b[buf].snacks_indent ~= false
+						and vim.bo[buf].buftype == ""
+				end,
+			},
 		},
 	},
 }

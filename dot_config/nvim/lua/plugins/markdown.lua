@@ -58,7 +58,7 @@ return {
 	{
 		"MeanderingProgrammer/markdown.nvim",
 		tag = "v7.8.0",
-		-- pin = true,
+		pin = true,
 		name = "render-markdown", -- Only needed if you have another plugin named markdown.nvim
 		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-tree/nvim-web-devicons" },
 		ft = { "markdown", "codecompanion" },
