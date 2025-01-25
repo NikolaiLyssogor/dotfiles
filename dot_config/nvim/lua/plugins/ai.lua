@@ -6,7 +6,6 @@ return {
 		dependencies = {
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
-			"hrsh7th/nvim-cmp",
 			"nvim-telescope/telescope.nvim",
 			{
 				"stevearc/dressing.nvim",
@@ -24,27 +23,17 @@ return {
 		},
 		opts = {
 			strategies = {
-				chat = { adapter = "openai" },
-				inline = { adapter = "openai" },
+				chat = { adapter = "ollama" },
+				inline = { adapter = "ollama" },
 			},
 			adapters = {
-				openai = function()
-					local home = os.getenv("HOME")
-
-					local url = home == "/Users/nlyssogor" and "https://api.openai.com/v1/chat/completions"
-						or "https://apim-prd-quanthub-wus-3.azure-api.net/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview"
-
-					return require("codecompanion.adapters").extend("openai", {
-						url = url,
-						env = {
-							api_key = string.format(
-								'cmd:gpg --decrypt --batch --passphrase " " %s/Documents/secrets/openai-key.txt.gpg 2>/dev/null',
-								home
-							),
-						},
-						headers = {
-							["Content-Type"] = "application/json",
-							["api-key"] = "${api_key}",
+				ollama = function()
+					return require("codecompanion.adapters").extend("ollama", {
+						schema = {
+							model = {
+								default = os.getenv("HOME") == "/Users/nlyssogor" and "qwen2.5-coder:14b"
+									or "qwen2.5-coder:32b",
+							},
 						},
 					})
 				end,
@@ -66,7 +55,7 @@ return {
 			right = {
 				{
 					ft = "codecompanion",
-					title = "openai",
+					title = "ollama",
 					size = { width = 0.25 },
 				},
 			},
