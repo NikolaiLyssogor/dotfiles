@@ -5,13 +5,7 @@ return {
 		pin = true,
 		enabled = true,
 		keys = {
-			{
-				"<leader>ss",
-				function()
-					require("auto-session.session-lens").session_lens.search_session()
-				end,
-				"[s]earch sessions",
-			},
+			{ "<leader>ss", "<cmd>SessionSearch<cr>", desc = "[s]earch sessions" },
 			{ "<leader>sd", "<cmd>Autosession delete<cr>", desc = "[d]elete session" },
 			{ "<leader>sc", "<cmd>SessionSave<cr>", desc = "[c]reate session" },
 		},
