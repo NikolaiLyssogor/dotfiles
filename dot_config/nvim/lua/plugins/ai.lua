@@ -1,7 +1,7 @@
 return {
 	{
 		"olimorris/codecompanion.nvim",
-		tag = "v9.9.1",
+		tag = "v11.13.1",
 		pin = true,
 		dependencies = {
 			"nvim-lua/plenary.nvim",
