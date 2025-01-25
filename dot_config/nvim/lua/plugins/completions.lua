@@ -1,9 +1,6 @@
 return {
 	{
 		"saghen/blink.cmp",
-		-- optional: provides snippets for the snippet source
-		dependencies = "rafamadriz/friendly-snippets",
-
 		-- use a release tag to download pre-built binaries
 		-- AND/OR build from source, requires nightly: https://rust-lang.github.io/rustup/concepts/channels.html#working-with-nightly-rust
 		-- build = 'cargo build --release',
@@ -23,6 +20,8 @@ return {
 				use_nvim_cmp_as_default = false,
 				nerd_font_variant = "mono",
 			},
+
+			snippets = { preset = "default" },
 
 			sources = {
 				default = { "lsp", "path", "snippets", "buffer" },
