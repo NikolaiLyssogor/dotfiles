@@ -23,8 +23,8 @@ return {
 		},
 		opts = {
 			strategies = {
-				chat = { adapter = "ollama" },
-				inline = { adapter = "ollama" },
+				chat = { adapter = "openai" },
+				inline = { adapter = "openai" },
 			},
 			adapters = {
 				ollama = function()
@@ -34,6 +34,26 @@ return {
 								default = os.getenv("HOME") == "/Users/nlyssogor" and "qwen2.5-coder:14b"
 									or "qwen2.5-coder:32b",
 							},
+						},
+					})
+				end,
+				openai = function()
+					local home = os.getenv("HOME")
+
+					local url = home == "/Users/nlyssogor" and "https://api.openai.com/v1/chat/completions"
+						or "https://apim-prd-quanthub-wus-3.azure-api.net/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview"
+
+					return require("codecompanion.adapters").extend("openai", {
+						url = url,
+						env = {
+							api_key = string.format(
+								'cmd:gpg --decrypt --batch --passphrase " " %s/Documents/secrets/openai-key.txt.gpg 2>/dev/null',
+								home
+							),
+						},
+						headers = {
+							["Content-Type"] = "application/json",
+							["api-key"] = "${api_key}",
 						},
 					})
 				end,
