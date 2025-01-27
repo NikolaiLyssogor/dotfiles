@@ -5,12 +5,11 @@ alias icat="kitten icat"
 {{ if eq .chezmoi.hostname "ml0221998" -}}
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="/Users/nqxl/Library/Python3.9/bin:$PATH"
-{{ end -}}
-{{ if eq .chezmoi.hostname "Nikolais-MacBook-Pro" -}}
-export NEOVIM_ENV="home"
 {{ else -}}
-export NEOVIM_ENV="work"
+export NEOVIM_ENV="home"
+alias curc="ssh nily9199@login.rc.colorado.edu"
 {{ end -}}
+
 bindkey -v
 
 # Yank to the system clipboard
