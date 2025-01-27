@@ -1,6 +1,7 @@
 eval "$(starship init zsh)"
 export EDITOR=nvim
 alias icat="kitten icat"
+alias ls='ls --color=auto'
 
 {{ if eq .chezmoi.hostname "ml0221998" -}}
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
