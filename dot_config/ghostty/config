@@ -20,3 +20,5 @@ mouse-hide-while-typing = true
 keybind = global:cmd+j=toggle_quick_terminal
 quick-terminal-position = center
 quick-terminal-animation-duration = 0
+
+cursor-text = black
