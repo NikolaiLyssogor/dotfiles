@@ -4,13 +4,8 @@ return {
 		tag = "v11.25.0",
 		pin = true,
 		dependencies = {
-			"nvim-lua/plenary.nvim",
+			{ "nvim-lua/plenary.nvim", branch = "master" },
 			"nvim-treesitter/nvim-treesitter",
-			"nvim-telescope/telescope.nvim",
-			{
-				"stevearc/dressing.nvim",
-				opts = {},
-			},
 		},
 		keys = {
 			{ "<leader>lc", "<cmd>CodeCompanionChat Toggle<cr>", desc = "[c]hat window toggle" },
