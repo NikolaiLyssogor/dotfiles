@@ -61,10 +61,12 @@ return {
 				"<cmd>lua vim.lsp.buf.type_definition()<cr>",
 				desc = "[t]ype definition",
 			},
+			{ "<leader>cj", "<cmd>lua vim.diagnostic.goto_next()<cr>", desc = "next diagnostic" },
+			{ "<leader>ck", "<cmd>lua vim.diagnostic.goto_prev()<cr>", desc = "prev diagnostic" },
 		},
 		config = function()
 			vim.lsp.set_log_level("debug")
-			local capabilities = require('blink.cmp').get_lsp_capabilities()
+			local capabilities = require("blink.cmp").get_lsp_capabilities()
 			local lspconfig = require("lspconfig")
 
 			lspconfig.lua_ls.setup({

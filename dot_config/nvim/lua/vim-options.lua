@@ -158,6 +158,3 @@ vim.api.nvim_set_keymap('n', '<C-u>', '10<C-u>', { noremap = true, silent = true
 
 -- Recommended by auto-session
 vim.o.sessionoptions="blank,buffers,curdir,folds,help,tabpages,winsize,winpos,terminal,localoptions"
-
--- Hide command line unless being used
-vim.opt.cmdheight = 0
