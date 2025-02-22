@@ -1,7 +1,7 @@
 return {
   {
     "catppuccin/nvim",
-    commit = "f67b886d65a029f12ffa298701fb8f1efd89295d",
+    commit = "4bb938bbba41d306db18bf0eb0633a5f28fd7ba0",
     pin = true,
     lazy = false,
     name = "catppuccin",
@@ -10,102 +10,10 @@ return {
       integrations = {
         blink_cmp = true,
       },
-      color_overrides = {
-        latte = {
-          green = "#1a8c00",
-          lavender = "#4561ff",
-          peach = "#eb5d0c",
-          sky = "#049cd9",
-          yellow = "#d6830e",
-          -- base = "#d6dae1",
-        },
-        mocha = {
-          -- base = "#000000",
-        },
-      },
     },
-    config = function()
-      require("catppuccin").setup()
-
-      local function set_toggle_light_dark_theme()
-        local home = os.getenv("HOME")
-        local filepath = home .. "/.local/share/nvim/my-data/theme.txt"
-        local readfile = io.open(filepath, "r")
-
-        if readfile then
-          local curr_theme = readfile:read("*l")
-          curr_theme = string.gsub(curr_theme, "^%s*(.-)%s*$", "%1")
-          if curr_theme == "dark" then
-            vim.o.background = "light"
-            vim.api.nvim_command("Catppuccin latte")
-            -- vim.api.nvim_set_hl(0, "CodeBlock", { bg = "#e2e2e8" })
-            vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#e2e2e8" })
-            vim.api.nvim_set_hl(0, "CodeCompanionTokens", { bg = "#ccd0da" })
-            local writefile = io.open(filepath, "w+")
-            if writefile then
-              writefile:write("light")
-              writefile:close()
-            else
-              print("ERROR: Failed to open file when writing light theme")
-            end
-          elseif curr_theme == "light" then
-            vim.o.background = "dark"
-            vim.api.nvim_command("Catppuccin mocha")
-            -- vim.api.nvim_set_hl(0, "CodeBlock", { bg = "#262538" })
-            vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#262538" })
-            vim.api.nvim_set_hl(0, "CodeCompanionTokens", { bg = "#313244" })
-            local writefile = io.open(filepath, "w+")
-            if writefile then
-              writefile:write("dark")
-              writefile:close()
-            else
-              print("ERROR: Failed to open file when writing dark theme")
-            end
-          else
-            print("ERROR: Theme file found unexpected setting " .. curr_theme)
-          end
-          readfile:close()
-        else
-          print("ERROR: Could not open " .. filepath .. " when setting theme.")
-        end
-      end
-
-      local function get_light_dark_theme()
-        local home = os.getenv("HOME")
-        local filepath = home .. "/.local/share/nvim/my-data/theme.txt"
-        local readfile = io.open(filepath, "r")
-
-        if readfile then
-          local curr_theme = readfile:read("*l")
-          curr_theme = string.gsub(curr_theme, "^%s*(.-)%s*$", "%1")
-          if curr_theme == "dark" then
-            vim.o.background = "dark"
-            vim.api.nvim_command("Catppuccin mocha")
-            -- vim.api.nvim_set_hl(0, "CodeBlock", { bg = "#262538" })
-            vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#262538" })
-            vim.api.nvim_set_hl(0, "CodeCompanionTokens", { bg = "#313244" })
-          elseif curr_theme == "light" then
-            vim.o.background = "light"
-            vim.api.nvim_command("Catppuccin latte")
-            -- vim.api.nvim_set_hl(0, "CodeBlock", { bg = "#e2e2e8" })
-            vim.api.nvim_set_hl(0, "ColorColumn", { bg = "#e2e2e8" })
-            vim.api.nvim_set_hl(0, "CodeCompanionTokens", { bg = "#ccd0da" })
-          else
-            print("ERROR: Theme file has unknown value, defaulting to dark theme")
-            vim.o.background = "dark"
-            vim.api.nvim_command("Catppuccin mocha")
-            local writefile = io.open(filepath, "w+")
-            if writefile then
-              writefile:write("dark")
-              writefile:close()
-            else
-              print("ERROR: Failed to write to theme file when defaulting theme to dark.")
-            end
-          end
-        end
-      end
-
-      get_light_dark_theme()
+    config = function(opts)
+      require("catppuccin").setup(opts)
+      vim.cmd.colorscheme("catppuccin")
     end,
   },
 }
