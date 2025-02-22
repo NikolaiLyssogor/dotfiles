@@ -38,8 +38,18 @@ return {
 				openai = function()
 					local home = os.getenv("HOME")
 
-					local url = home == "/Users/nlyssogor" and "https://api.openai.com/v1/chat/completions"
-						or "https://apim-prd-quanthub-wus-3.azure-api.net/openai/deployments/gpt-4o/chat/completions?api-version=2024-02-15-preview"
+          local function readUrl()
+            local filename = home .. "/Documents/secrets/azure-openai-url.txt"
+            local file = io.open(filename, "r" )
+            if not file then
+              error("Could not open file: " .. filename )
+            end
+            local line = file:read("*line")
+            file:close()
+            return line
+          end
+
+					local url = home == "/Users/nlyssogor" and "https://api.openai.com/v1/chat/completions" or readUrl()
 
 					return require("codecompanion.adapters").extend("openai", {
 						url = url,
