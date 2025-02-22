@@ -120,8 +120,8 @@ return {
             [vim.diagnostic.severity.HINT] = '',
           },
           numhl = {
-            [vim.diagnostic.severity.ERROR] = 'WarningMsg',
-            [vim.diagnostic.severity.WARN] = 'ErrorMsg',
+            [vim.diagnostic.severity.ERROR] = 'ErrorMsg',
+            [vim.diagnostic.severity.WARN] = 'WarningMsg',
             [vim.diagnostic.severity.INFO] = 'DiagnosticInfo',
             [vim.diagnostic.severity.HINT] = 'DiagnosticHint',
           }
