@@ -95,11 +95,6 @@ return {
 
 			vim.lsp.set_log_level("off")
 
-      -- TODO: delete this? Not sure what it does.
-			vim.keymap.set("i", "<c-k>", function()
-				vim.lsp.buf.signature_help()
-			end, { buffer = true })
-
       -- show function signature when typing its arguments
 			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers["signature_help"], {
 				border = "single",
@@ -113,10 +108,24 @@ return {
 					underline = false,
 				})
 
+      -- use line numbers as diagnostic signs
 			vim.diagnostic.config({
 				virtual_text = false,
 				underline = true,
-				signs = true,
+				signs = {
+          text = {
+            [vim.diagnostic.severity.ERROR] = '',
+            [vim.diagnostic.severity.WARN] = '',
+            [vim.diagnostic.severity.INFO] = '',
+            [vim.diagnostic.severity.HINT] = '',
+          },
+          numhl = {
+            [vim.diagnostic.severity.ERROR] = 'WarningMsg',
+            [vim.diagnostic.severity.WARN] = 'ErrorMsg',
+            [vim.diagnostic.severity.INFO] = 'DiagnosticInfo',
+            [vim.diagnostic.severity.HINT] = 'DiagnosticHint',
+          }
+        },
 			})
 
 		end,
