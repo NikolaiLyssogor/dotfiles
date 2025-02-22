@@ -1,8 +1,8 @@
 return {
 	{
 		"NikolaiLyssogor/sink.nvim",
-		dir = "~/Documents/personal-projects/sink.nvim/",
-		dev = true,
+		-- dir = "~/Documents/personal-projects/sink.nvim/",
+		-- dev = true,
 		keys = {
 			{ "<leader>rp", "<cmd>SinkPush<CR>", desc = "[p]ush to remote" },
 			{ "<leader>rl", "<cmd>SinkPull<CR>", desc = "pu[l]l from remote" },
