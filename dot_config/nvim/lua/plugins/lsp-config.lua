@@ -29,7 +29,7 @@ return {
 	},
 	{
 		"neovim/nvim-lspconfig",
-		tag = "v0.1.8",
+		tag = "v1.6.0",
 		pin = true,
 		dependencies = { "saghen/blink.cmp" },
 		keys = {
@@ -51,11 +51,19 @@ return {
 			-- D = { vim.lsp.buf.declaration, "[D]eclaration" },
 			{
 				"<leader>ci",
-				"<cmd>Telescope lsp_implementations<cr><esc>",
+				function()
+					require("snacks.picker").lsp_implementations()
+				end,
 				desc = "[i]mplementation",
 			},
 			{ "<leader>cn", "<cmd>lua vim.lsp.buf.rename()<cr>", desc = "re[n]ame" },
-			{ "<leader>cr", "<cmd>lua require('telescope.builtin').lsp_references()<cr><esc>", desc = "[r]eferences" },
+			{
+				"<leader>cr",
+				function()
+					require("snacks.picker").lsp_references()
+				end,
+				desc = "[r]eferences",
+			},
 			{
 				"<leader>ct",
 				"<cmd>lua vim.lsp.buf.type_definition()<cr>",

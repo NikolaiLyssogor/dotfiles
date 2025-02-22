@@ -1,7 +1,7 @@
 return {
 	{
 		"olimorris/codecompanion.nvim",
-		tag = "v11.25.0",
+		tag = "v12.7.0",
 		pin = true,
 		dependencies = {
 			{ "nvim-lua/plenary.nvim", branch = "master" },
@@ -18,7 +18,10 @@ return {
 		},
 		opts = {
 			strategies = {
-				chat = { adapter = "openai" },
+				chat = {
+					adapter = "openai",
+					slash_commands = { ["file"] = { opts = { provider = "snacks" } } },
+				},
 				inline = { adapter = "openai" },
 			},
 			adapters = {
