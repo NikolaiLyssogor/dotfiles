@@ -2,7 +2,7 @@ return {
   {
     "saghen/blink.cmp",
     tag = "v0.11.0",
-    -- pin = true,
+    pin = true,
     opts = {
 
       keymap = {
