@@ -106,13 +106,6 @@ return {
       end
 
       get_light_dark_theme()
-
-      require("which-key").register({
-        v = {
-          name = "[v]im general settings",
-          t = { set_toggle_light_dark_theme, "[t]oggle light/dark theme" },
-        },
-      }, { mode = "n", prefix = "<leader>" })
     end,
   },
 }
