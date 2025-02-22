@@ -1,6 +1,6 @@
 return {
 	"nvimtools/none-ls.nvim",
-	commit = "dca7ddec321a102ec9e792b1b29193702aff5fbb",
+	commit = "75f74959f6471ca43a43a601d744a26393cc55c7",
 	pin = true,
 	event = "VeryLazy",
 	config = function()
