@@ -11,7 +11,7 @@ return {
 			{ "<leader>lc", "<cmd>CodeCompanionChat Toggle<cr>", desc = "[c]hat window toggle" },
 			{
 				"<leader>la",
-				"<cmd>CodeCompanionChat Add<cr>",
+				"<cmd>CodeCompanionChat Add<cr><esc>",
 				mode = "v",
 				desc = "[a]dd visual selection to chat",
 			},
@@ -56,9 +56,6 @@ return {
 					})
 				end,
 			},
-			opts = {
-				log_level = "DEBUG",
-			},
 		},
 	},
 	{
@@ -66,14 +63,13 @@ return {
 		tag = "v1.8.4",
 		pin = true,
 		init = function()
-			vim.opt.laststatus = 3
 			vim.opt.splitkeep = "screen"
 		end,
 		opts = {
 			right = {
 				{
 					ft = "codecompanion",
-					title = "ollama",
+					title = "chat",
 					size = { width = 0.25 },
 				},
 			},

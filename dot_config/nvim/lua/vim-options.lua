@@ -155,3 +155,6 @@ vim.api.nvim_set_keymap('n', '<C-d>', '10<C-d>', { noremap = true, silent = true
 
 -- Remap Ctrl-u to move cursor 10 lines up
 vim.api.nvim_set_keymap('n', '<C-u>', '10<C-u>', { noremap = true, silent = true })
+
+-- Status bar spans whole screen
+vim.o.laststatus = 3
