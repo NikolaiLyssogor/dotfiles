@@ -1,36 +1,9 @@
 return {
 	{
-		"williamboman/mason.nvim",
-		tag = "v1.10.0",
-		pin = true,
-		config = function()
-			require("mason").setup()
-		end,
-	},
-	{
-		"williamboman/mason-lspconfig.nvim",
-		tag = "v1.27.0",
-		pin = true,
-		config = function()
-			require("mason-lspconfig").setup({
-				ensure_installed = {
-					"clangd",
-					"bashls",
-					"pyright",
-					"ruff_lsp",
-					"html",
-					"tsserver",
-					"tailwindcss",
-					"lua_ls",
-					"rust_analyzer",
-				},
-			})
-		end,
-	},
-	{
 		"neovim/nvim-lspconfig",
 		tag = "v1.6.0",
 		pin = true,
+		event = { "BufReadPre", "BufNewFile" },
 		dependencies = { "saghen/blink.cmp" },
 		keys = {
 			{ "<leader>ca", "<cmd>lua vim.lsp.buf.code_action()<cr>", desc = "code [a]ction" },
@@ -73,14 +46,13 @@ return {
 			{ "<leader>ck", "<cmd>lua vim.diagnostic.goto_prev()<cr>", desc = "prev diagnostic" },
 		},
 		config = function()
-			vim.lsp.set_log_level("debug")
 			local capabilities = require("blink.cmp").get_lsp_capabilities()
 			local lspconfig = require("lspconfig")
 
 			lspconfig.lua_ls.setup({
 				capabilities = capabilities,
 			})
-			lspconfig.tsserver.setup({
+			lspconfig.ts_ls.setup({
 				capabilities = capabilities,
 			})
 			lspconfig.tailwindcss.setup({
@@ -100,12 +72,16 @@ return {
 					"--offset-encoding=utf-16",
 				},
 			})
-			lspconfig.ruff_lsp.setup({
+			lspconfig.ruff.setup({
 				capabilities = capabilities,
 			})
 			lspconfig.pyright.setup({
 				on_attach = on_attach,
 				settings = {
+          pyright = {
+            -- use ruff for organizing imports
+            disableOrganizeImports = true,
+          },
 					python = {
 						analysis = {
 							diagnosticMode = "openFilesOnly",
@@ -117,13 +93,20 @@ return {
 				},
 			})
 
+			vim.lsp.set_log_level("off")
+
+      -- TODO: delete this? Not sure what it does.
 			vim.keymap.set("i", "<c-k>", function()
 				vim.lsp.buf.signature_help()
 			end, { buffer = true })
+
+      -- show function signature when typing its arguments
 			vim.lsp.handlers["textDocument/signatureHelp"] = vim.lsp.with(vim.lsp.handlers["signature_help"], {
 				border = "single",
 				close_events = { "CursorMoved", "BufHidden", "InsertCharPre" }, -- InsertCharPre, BufHidden, CursorMoved
 			})
+
+      -- disable diagnostic virtual text
 			vim.lsp.handlers["textDocument/publishDiagnostics"] =
 				vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
 					virtual_text = false,
@@ -136,7 +119,6 @@ return {
 				signs = true,
 			})
 
-			vim.lsp.set_log_level("OFF")
 		end,
 	},
 }

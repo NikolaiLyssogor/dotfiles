@@ -9,3 +9,12 @@ packages:
     - 'wget'
     - 'fzf'
     - 'chafa'
+    - 'pyright'
+    - 'ruff'
+    - 'stylua'
+    - 'lua-language-server'
+    - 'tailwindcss-language-server'
+    - 'shellcheck'
+    - 'bash-language-server'
+    - 'shfmt'
+
