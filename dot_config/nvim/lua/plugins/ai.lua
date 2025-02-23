@@ -8,7 +8,14 @@ return {
 			"nvim-treesitter/nvim-treesitter",
 		},
 		keys = {
-			{ "<leader>lc", "<cmd>CodeCompanionChat Toggle<cr>", desc = "[c]hat window toggle" },
+			{
+				"<leader>lc",
+				function()
+					vim.cmd("wincmd L")
+					vim.cmd("CodeCompanionChat Toggle")
+				end,
+				desc = "[c]hat window toggle",
+			},
 			{
 				"<leader>la",
 				"<cmd>CodeCompanionChat Add<cr><esc>",
@@ -17,6 +24,14 @@ return {
 			},
 		},
 		opts = {
+			display = {
+				chat = {
+					window = {
+						position = "right",
+						width = 0.25,
+					},
+				},
+			},
 			strategies = {
 				chat = {
 					adapter = "openai",
@@ -38,16 +53,16 @@ return {
 				openai = function()
 					local home = os.getenv("HOME")
 
-          local function readUrl()
-            local filename = home .. "/Documents/secrets/azure-openai-url.txt"
-            local file = io.open(filename, "r" )
-            if not file then
-              error("Could not open file: " .. filename )
-            end
-            local line = file:read("*line")
-            file:close()
-            return line
-          end
+					local function readUrl()
+						local filename = home .. "/Documents/secrets/azure-openai-url.txt"
+						local file = io.open(filename, "r")
+						if not file then
+							error("Could not open file: " .. filename)
+						end
+						local line = file:read("*line")
+						file:close()
+						return line
+					end
 
 					local url = home == "/Users/nlyssogor" and "https://api.openai.com/v1/chat/completions" or readUrl()
 
@@ -64,34 +79,6 @@ return {
 							["api-key"] = "${api_key}",
 						},
 					})
-				end,
-			},
-		},
-	},
-	{
-		"folke/edgy.nvim",
-		tag = "v1.8.4",
-		pin = true,
-		init = function()
-			vim.opt.splitkeep = "screen"
-		end,
-		opts = {
-			right = {
-				{
-					ft = "codecompanion",
-					title = "chat",
-					size = { width = 0.25 },
-				},
-			},
-			animate = { enabled = false },
-			keys = {
-				-- increase width
-				["="] = function(win)
-					win:resize("width", 2)
-				end,
-				-- decrease width
-				["-"] = function(win)
-					win:resize("width", -2)
 				end,
 			},
 		},

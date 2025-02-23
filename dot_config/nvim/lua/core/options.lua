@@ -40,17 +40,6 @@ vim.keymap.set("n", "<c-j>", ":wincmd j<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<c-h>", ":wincmd h<CR>", { noremap = true, silent = true })
 vim.keymap.set("n", "<c-l>", ":wincmd l<CR>", { noremap = true, silent = true })
 
--- navigate tabs more easily
-vim.keymap.set("n", "1t", ":tabn1<cr>")
-vim.keymap.set("n", "2t", ":tabn2<cr>")
-vim.keymap.set("n", "3t", ":tabn3<cr>")
-vim.keymap.set("n", "4t", ":tabn4<cr>")
-vim.keymap.set("n", "5t", ":tabn5<cr>")
-vim.keymap.set("n", "6t", ":tabn6<cr>")
-vim.keymap.set("n", "7t", ":tabn7<cr>")
-vim.keymap.set("n", "8t", ":tabn8<cr>")
-vim.keymap.set("n", "9t", ":tabn9<cr>")
-
 -- set nerdfont
 vim.o.guifont = "JetBrainsMono Nerd Font:style=Regular,Regular:h12.5"
 
@@ -96,7 +85,7 @@ vim.api.nvim_create_autocmd({ "FileType" }, {
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 	pattern = { "*codecompanion*", "*.md" },
 	callback = function()
-    vim.wo.smoothscroll = true
+		vim.wo.smoothscroll = true
 		vim.opt_local.wrap = true
 		vim.opt_local.linebreak = true
 		vim.opt_local.breakindent = true
@@ -106,34 +95,23 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 		vim.opt_local.formatlistpat = "^\\s*[0-9\\-\\+\\*]\\+[\\.\\)]*\\s\\+"
 		vim.opt_local.breakindentopt = "list:-1,shift:0,sbr"
 		vim.opt_local.breakat = " \t;:,!?"
+
+		if vim.o.filetype == "codecompanion" then
+			local palette = vim.o.background == "dark" and "mocha" or "latte"
+			local bg = require("catppuccin.palettes").get_palette(palette).mantle
+			vim.cmd("highlight Normal guibg=" .. bg)
+		end
 	end,
 })
 
--- compiler.nvim keymaps
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>bb",
-	"<cmd>CompilerOpen<cr><esc>",
-	{ noremap = true, silent = true, desc = "[b]uild project" }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>br",
-	"<cmd>CompilerRedo<cr>",
-	{ noremap = true, silent = true, desc = "[r]edo last selected option" }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>bd",
-	"<cmd>CompilerStop<cr>",
-	{ noremap = true, silent = true, desc = "[d]ispose all tasks" }
-)
-vim.api.nvim_set_keymap(
-	"n",
-	"<leader>bt",
-	"<cmd>CompilerToggleResults<cr>",
-	{ noremap = true, silent = true, desc = "[t]oggle build history" }
-)
+vim.api.nvim_create_autocmd({ "BufLeave", "BufWinLeave" }, {
+	pattern = { "*codecompanion*" },
+	callback = function()
+		local palette = vim.o.background == "dark" and "mocha" or "latte"
+		local bg = require("catppuccin.palettes").get_palette(palette).base
+		vim.cmd("highlight Normal guibg=" .. bg)
+	end,
+})
 
 -- unmap this to avoidconflict with nvim-autopairs
 vim.cmd([[let g:completion_confirm_key = ""]])
@@ -145,16 +123,16 @@ vim.o.showmode = false
 vim.opt.guicursor = "n-v-c:block"
 
 -- Remap Ctrl-e to move cursor 10 lines down
-vim.api.nvim_set_keymap('n', '<C-e>', '10<C-e>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-e>", "10<C-e>", { noremap = true, silent = true })
 
 -- Remap Ctrl-y to move cursor 10 lines up
-vim.api.nvim_set_keymap('n', '<C-y>', '10<C-y>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-y>", "10<C-y>", { noremap = true, silent = true })
 
 -- Remap Ctrl-d to move cursor 10 lines down
-vim.api.nvim_set_keymap('n', '<C-d>', '10<C-d>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-d>", "10<C-d>", { noremap = true, silent = true })
 
 -- Remap Ctrl-u to move cursor 10 lines up
-vim.api.nvim_set_keymap('n', '<C-u>', '10<C-u>', { noremap = true, silent = true })
+vim.api.nvim_set_keymap("n", "<C-u>", "10<C-u>", { noremap = true, silent = true })
 
 -- Status bar spans whole screen
 vim.o.laststatus = 3
