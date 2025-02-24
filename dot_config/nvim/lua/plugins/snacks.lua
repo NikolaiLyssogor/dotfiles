@@ -1,4 +1,9 @@
 return {
+  {
+    "nvim-tree/nvim-web-devicons",
+    commit = "1020869742ecb191f260818234517f4a1515cfe8",
+    pin = true,
+  },
 	{
 		"folke/snacks.nvim",
 		tag = "v2.21.0",
@@ -27,6 +32,13 @@ return {
           Snacks.explorer()
         end,
         desc = "[d]irectory explorer"
+      },
+      {
+        "<leader>fs",
+        function()
+          Snacks.picker.lsp_symbols({ layout = { preset = "vscode", preview = "main" } })
+        end,
+        desc = "[s]ymbols picker"
       }
 		},
 		opts = {
