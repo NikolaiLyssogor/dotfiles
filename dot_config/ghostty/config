@@ -1,8 +1,15 @@
 theme = dark:catppuccin-mocha,light:catppuccin-latte
 font-family = "JetBrainsMono Nerd Font Mono"
 font-size = 13
+
+# Make ghostty fit in macos window size
+adjust-cell-height = 13%
+fullscreen = true
+maximize = true
+window-padding-balance = true
 window-padding-y = 0
 window-padding-x = 0
+
 font-thicken
 scrollback-limit = 40000000
 
@@ -17,8 +24,9 @@ keybind = cmd+H=resize_split:down,10
 mouse-hide-while-typing = true
 
 # quick terminal
-keybind = global:cmd+j=toggle_quick_terminal
+keybind = cmd+j=toggle_quick_terminal
 quick-terminal-position = center
 quick-terminal-animation-duration = 0
+quick-terminal-space-behavior = remain
 
 cursor-text = black
