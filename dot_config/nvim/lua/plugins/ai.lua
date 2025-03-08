@@ -1,7 +1,7 @@
 return {
 	{
 		"olimorris/codecompanion.nvim",
-		tag = "v12.7.0",
+		tag = "v13.2.3",
 		pin = true,
 		dependencies = {
 			{ "nvim-lua/plenary.nvim", branch = "master" },
@@ -34,7 +34,7 @@ return {
 			},
 			strategies = {
 				chat = {
-					adapter = "openai",
+					adapter = os.getenv("HOME") == "/Users/nlyssogor" and "anthropic" or "openai",
 					slash_commands = { ["file"] = { opts = { provider = "snacks" } } },
 				},
 				inline = { adapter = "openai" },
@@ -50,6 +50,16 @@ return {
 						},
 					})
 				end,
+        anthropic = function()
+          return require("codecompanion.adapters").extend("anthropic", {
+            env = {
+              api_key = string.format(
+								'cmd:gpg --decrypt --batch --passphrase " " %s/Documents/secrets/anthropic-key.txt.gpg 2>/dev/null',
+								os.getenv("HOME")
+							),
+            },
+          })
+        end,
 				openai = function()
 					local home = os.getenv("HOME")
 
