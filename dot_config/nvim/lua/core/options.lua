@@ -95,21 +95,6 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
 		vim.opt_local.formatlistpat = "^\\s*[0-9\\-\\+\\*]\\+[\\.\\)]*\\s\\+"
 		vim.opt_local.breakindentopt = "list:-1,shift:0,sbr"
 		vim.opt_local.breakat = " \t;:,!?"
-
-		if vim.o.filetype == "codecompanion" then
-			local palette = vim.o.background == "dark" and "mocha" or "latte"
-			local bg = require("catppuccin.palettes").get_palette(palette).mantle
-			vim.cmd("highlight Normal guibg=" .. bg)
-		end
-	end,
-})
-
-vim.api.nvim_create_autocmd({ "BufLeave", "BufWinLeave" }, {
-	pattern = { "*codecompanion*" },
-	callback = function()
-		local palette = vim.o.background == "dark" and "mocha" or "latte"
-		local bg = require("catppuccin.palettes").get_palette(palette).base
-		vim.cmd("highlight Normal guibg=" .. bg)
 	end,
 })
 
