@@ -1,7 +1,7 @@
 return {
   {
     "saghen/blink.cmp",
-    tag = "v0.11.0",
+    tag = "v0.13.1",
     pin = true,
     opts = {
 
@@ -20,6 +20,8 @@ return {
       sources = {
         default = { "lsp", "path", "snippets" },
       },
+
+      cmdline = { completion = { menu = { auto_show = true } } },
 
       completion = {
         accept = { auto_brackets = { enabled = true } },
