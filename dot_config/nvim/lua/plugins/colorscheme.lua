@@ -1,19 +1,14 @@
 return {
   {
-    "catppuccin/nvim",
-    commit = "4bb938bbba41d306db18bf0eb0633a5f28fd7ba0",
+    "wtfox/jellybeans.nvim",
+    commit = "07a40854d5c1a158de513c996a23de244eda198e",
     pin = true,
     lazy = false,
-    name = "catppuccin",
+    name = "jellybeans",
     priority = 1000,
-    opts = {
-      integrations = {
-        blink_cmp = true,
-      },
-    },
     config = function(opts)
-      require("catppuccin").setup(opts)
-      vim.cmd.colorscheme("catppuccin")
+      require("jellybeans").setup(opts)
+      vim.cmd.colorscheme("jellybeans")
     end,
   },
 }
