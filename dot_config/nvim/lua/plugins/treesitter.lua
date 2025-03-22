@@ -1,7 +1,7 @@
 return {
 	{
 		"nvim-treesitter/nvim-treesitter",
-		commit = "5774e7d3da4f681296a87fcd85d17779ad362a4f",
+		commit = "5f38dffb6a07669a678f073bfe0f62b1a020dffc",
 		pin = true,
 		build = ":TSUpdate",
 		config = function()
