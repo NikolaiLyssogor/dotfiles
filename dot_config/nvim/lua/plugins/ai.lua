@@ -46,7 +46,6 @@ You must:
         },
 			display = {
 				chat = {
-          auto_scroll = false,
 					window = {
 						position = "right",
 						width = 0.25,
