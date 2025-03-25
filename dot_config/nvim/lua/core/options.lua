@@ -61,41 +61,49 @@ vim.opt.clipboard = "unnamed"
 
 -- html/css/js/ts settings
 local function set_webdev_settings()
-	vim.opt_local.tabstop = 2
-	vim.opt_local.softtabstop = 2
-	vim.opt_local.shiftwidth = 2
-	vim.opt_local.conceallevel = 0
+  vim.opt_local.tabstop = 2
+  vim.opt_local.softtabstop = 2
+  vim.opt_local.shiftwidth = 2
+  vim.opt_local.conceallevel = 0
 end
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "lua", "html", "css", "javascript", "typescript", "typescriptreact" },
-	callback = set_webdev_settings,
+  pattern = { "lua", "html", "css", "javascript", "typescript", "typescriptreact" },
+  callback = set_webdev_settings,
 })
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-	pattern = { "json" },
-	callback = function()
-		vim.opt_local.wrap = true
-		vim.opt_local.linebreak = true
-		set_webdev_settings()
-	end,
+  pattern = { "json" },
+  callback = function()
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+    set_webdev_settings()
+  end,
 })
 
 -- markdown and markdown-like autocmds
 vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
-	pattern = { "*codecompanion*", "*.md" },
-	callback = function()
-		vim.wo.smoothscroll = true
-		vim.opt_local.wrap = true
-		vim.opt_local.linebreak = true
-		vim.opt_local.breakindent = true
-		vim.opt_local.number = false
-		vim.opt_local.relativenumber = false
-		vim.opt_local.conceallevel = 2
-		vim.opt_local.formatlistpat = "^\\s*[0-9\\-\\+\\*]\\+[\\.\\)]*\\s\\+"
-		vim.opt_local.breakindentopt = "list:-1,shift:0,sbr"
-		vim.opt_local.breakat = " \t;:,!?"
-	end,
+  pattern = { "*codecompanion*", "*.md" },
+  callback = function()
+    vim.wo.smoothscroll = true
+    vim.opt_local.wrap = true
+    vim.opt_local.linebreak = true
+    vim.opt_local.breakindent = true
+    vim.opt_local.number = false
+    vim.opt_local.relativenumber = false
+    -- vim.opt_local.conceallevel = 2
+    vim.opt_local.formatlistpat = "^\\s*[0-9\\-\\+\\*]\\+[\\.\\)]*\\s\\+"
+    vim.opt_local.breakindentopt = "list:-1,shift:0,sbr"
+    vim.opt_local.breakat = " \t;:,!?"
+  end,
+})
+
+vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
+  pattern = { "*.cpp", "*.hpp", "*.c", "*.h", "*.rs", "*.cu", "*.cuh" },
+  callback = function()
+    -- Don't indent/dedent when typing colon
+    vim.cmd([[setlocal indentkeys-=:]])
+  end
 })
 
 -- unmap this to avoidconflict with nvim-autopairs
