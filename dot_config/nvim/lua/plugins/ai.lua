@@ -3,6 +3,7 @@ return {
     "olimorris/codecompanion.nvim",
     tag = "v14.2.2",
     pin = true,
+    lazy = false,
     dependencies = {
       { "nvim-lua/plenary.nvim", branch = "master" },
       "nvim-treesitter/nvim-treesitter",
