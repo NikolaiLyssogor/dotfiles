@@ -35,12 +35,6 @@ vim.api.nvim_create_autocmd("LspAttach", {
 			close_events = { "CursorMoved", "BufHidden", "InsertCharPre" },
 		})
 
-		-- disable diagnostic virtual text
-		vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
-			virtual_text = false,
-			underline = false,
-		})
-
 		-- use line numbers as diagnostic signs
 		vim.diagnostic.config({
 			virtual_text = false,
