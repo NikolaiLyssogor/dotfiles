@@ -21,7 +21,11 @@ return {
         default = { "lsp", "path", "snippets" },
       },
 
-      cmdline = { completion = { menu = { auto_show = true } } },
+      cmdline = {
+        completion = { menu = { auto_show = true } },
+        keymap = { preset = "inherit" }
+      },
+
 
       completion = {
         accept = { auto_brackets = { enabled = true } },
