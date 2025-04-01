@@ -7,5 +7,8 @@ return {
     options = {
       theme = "jellybeans",
     },
+    sections = {
+      lualine_x = { 'filetype' }
+    }
   },
 }
