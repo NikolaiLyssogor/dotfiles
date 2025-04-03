@@ -12,7 +12,6 @@ return {
       {
         "<leader>lc",
         function()
-          vim.cmd("wincmd L")
           vim.cmd("CodeCompanionChat Toggle")
         end,
         desc = "[c]hat window toggle",
