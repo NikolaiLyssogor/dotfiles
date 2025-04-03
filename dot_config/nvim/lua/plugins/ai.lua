@@ -55,7 +55,7 @@ You must:
       },
       strategies = {
         chat = {
-          adapter = os.getenv("HOME") == "/Users/nlyssogor" and "anthropic" or "openai",
+          adapter = "openai",
           slash_commands = { ["file"] = { opts = { provider = "snacks" } } },
         },
         inline = { adapter = "openai" },
