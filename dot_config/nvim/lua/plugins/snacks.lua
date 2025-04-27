@@ -9,6 +9,7 @@ return {
     tag = "v2.21.0",
     pin = true,
     priority = 1000,
+    lazy = false,
     keys = {
       {
         "<leader>ff",
