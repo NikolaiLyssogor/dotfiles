@@ -61,53 +61,42 @@ You must:
         inline = { adapter = "openai" },
       },
       adapters = {
+        opts = { show_defaults = false },
+
+        openai = function()
+          return require("codecompanion.adapters").extend("openai", {
+            env = {
+              api_key = require("core.utils").gpg_secret_cmd("openai-key.txt.gpg"),
+            },
+            schema = {
+              model = {
+                default = "gpt-4.1",
+                choices = { "gpt-4.1", "o4-mini" }
+              }
+            }
+          })
+        end,
+
+        anthropic = function()
+          return require("codecompanion.adapters").extend("anthropic", {
+            env = {
+              api_key = require("core.utils").gpg_secret_cmd("anthropic-key.txt.gpg"),
+            },
+            schema = {
+              model = {
+                default = "claude-3-7-sonnet-latest",
+                choices = { "claude-3-7-sonnet-latest" }
+              }
+            }
+          })
+        end,
+
         ollama = function()
           return require("codecompanion.adapters").extend("ollama", {
             schema = {
               model = {
-                default = os.getenv("HOME") == "/Users/nlyssogor" and "qwen2.5-coder:14b"
-                    or "qwen2.5-coder:32b",
+                default = os.getenv("HOME") == "/Users/nlyssogor" and "qwen2.5-coder:14b" or "qwen2.5-coder:32b",
               },
-            },
-          })
-        end,
-        anthropic = function()
-          return require("codecompanion.adapters").extend("anthropic", {
-            env = {
-              api_key = string.format(
-                'cmd:gpg --decrypt --batch --passphrase " " %s/Documents/secrets/anthropic-key.txt.gpg 2>/dev/null',
-                os.getenv("HOME")
-              ),
-            },
-          })
-        end,
-        openai = function()
-          local home = os.getenv("HOME")
-
-          local function readUrl()
-            local filename = home .. "/Documents/secrets/azure-openai-url.txt"
-            local file = io.open(filename, "r")
-            if not file then
-              error("Could not open file: " .. filename)
-            end
-            local line = file:read("*line")
-            file:close()
-            return line
-          end
-
-          local url = home == "/Users/nlyssogor" and "https://api.openai.com/v1/chat/completions" or readUrl()
-
-          return require("codecompanion.adapters").extend("openai", {
-            url = url,
-            env = {
-              api_key = string.format(
-                'cmd:gpg --decrypt --batch --passphrase " " %s/Documents/secrets/openai-key.txt.gpg 2>/dev/null',
-                home
-              ),
-            },
-            headers = {
-              ["Content-Type"] = "application/json",
-              ["api-key"] = "${api_key}",
             },
           })
         end,
