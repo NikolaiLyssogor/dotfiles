@@ -13,8 +13,5 @@ packages:
     - 'ruff'
     - 'stylua'
     - 'lua-language-server'
+    - 'typescript-language-server'
     - 'tailwindcss-language-server'
-    - 'shellcheck'
-    - 'bash-language-server'
-    - 'shfmt'
-
