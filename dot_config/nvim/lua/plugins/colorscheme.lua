@@ -1,7 +1,7 @@
 return {
   {
     "wtfox/jellybeans.nvim",
-    commit = "0231cbb415b01e4650568ff690ab36fa978b4973",
+    commit = "3204baaab2888874e6eca302de57b57bcba085b9",
     pin = true,
     lazy = false,
     name = "jellybeans",
