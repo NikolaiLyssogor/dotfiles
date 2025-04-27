@@ -3,6 +3,9 @@ export EDITOR=nvim
 alias icat="chafa"
 alias ls='ls --color=auto'
 
+# Use neovim as man pager
+export MANPAGER='nvim +Man!'
+
 {{ if eq .chezmoi.hostname "ml0221998" -}}
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="/Users/nqxl/Library/Python3.9/bin:$PATH"
