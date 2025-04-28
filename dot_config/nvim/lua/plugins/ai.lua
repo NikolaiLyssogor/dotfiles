@@ -54,10 +54,10 @@ You must:
       },
       strategies = {
         chat = {
-          adapter = "openai",
+          adapter = os.getenv("HOME") == "/Users/nlyssogor" and "openai" or "azure_openai",
           slash_commands = { ["file"] = { opts = { provider = "snacks" } } },
         },
-        inline = { adapter = "openai" },
+        inline = { adapter = os.getenv("HOME") == "/Users/nlyssogor" and "openai" or "azure_openai" },
       },
       adapters = {
         opts = { show_defaults = false },
@@ -67,11 +67,25 @@ You must:
             env = {
               api_key = require("core.utils").gpg_secret_cmd("openai-key.txt.gpg"),
             },
-            schema = {
-              model = {
-                default = "gpt-4.1",
-                choices = { "gpt-4.1", "o4-mini" }
-              }
+            schema = { model = { default = "gpt-4.1", choices = { "gpt-4.1", "o4-mini" } } }
+          })
+        end,
+
+        azure_openai = function()
+          local utils = require("core.utils")
+          local endpoint = utils.read_file_first_line(os.getenv("HOME") .. "/Documents/secrets/azure-openai-endpoint.txt")
+          local api_key = utils.gpg_secret_cmd("openai-key.txt.gpg")
+
+          return require("codecompanion.adapters").extend("azure_openai", {
+            env = {
+              endpoint = endpoint,
+              api_key = api_key,
+              api_version = "2025-03-01-preview",
+            },
+            schema = { model = { default = "gpt-4.1", choices = { "gpt-4.1", "o4-mini" } } },
+            headers = {
+              ["Content-Type"] = "application/json",
+              Authorization = "Bearer ${api_key}",
             }
           })
         end,
