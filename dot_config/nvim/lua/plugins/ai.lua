@@ -1,12 +1,25 @@
 return {
   {
     "olimorris/codecompanion.nvim",
-    tag = "v14.2.2",
+    tag = "v15.1.0",
     pin = true,
     lazy = false,
     dependencies = {
-      { "nvim-lua/plenary.nvim", branch = "master" },
-      "nvim-treesitter/nvim-treesitter",
+      {
+        "nvim-lua/plenary.nvim",
+        commit = "857c5ac632080dba10aae49dba902ce3abf91b35",
+        pin = true,
+        branch = "master"
+      },
+      {
+        "echasnovski/mini.diff",
+        commit = "7e268d0241255abaa07b8aa0ddff028f7315fe21",
+        pin = true,
+        config = function()
+          local diff = require("mini.diff")
+          diff.setup({ source = diff.gen_source.none() })
+        end,
+      },
     },
     keys = {
       {
@@ -50,7 +63,7 @@ You must:
             width = 0.25,
           },
         },
-        diff = { enabled = false },
+        diff = { provider = "mini_diff" },
       },
       strategies = {
         chat = {
