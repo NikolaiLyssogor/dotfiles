@@ -1,1 +1,2 @@
 .mode box --wrap 60 -ww
+.timer on
