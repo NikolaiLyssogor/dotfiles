@@ -92,7 +92,7 @@ vim.api.nvim_create_autocmd({ "BufEnter", "BufWinEnter" }, {
     vim.opt_local.number = false
     vim.opt_local.relativenumber = false
     -- vim.opt_local.conceallevel = 2
-    vim.opt_local.formatlistpat = "^\\s*[0-9\\-\\+\\*]\\+[\\.\\)]*\\s\\+"
+    vim.opt_local.formatlistpat = "^\\s*\\(\\d\\+[.)]\\|[-+*]\\)\\s\\+\\(\\[[ xX]\\]\\s\\+\\)\\?"
     vim.opt_local.breakindentopt = "list:-1,shift:0,sbr"
     vim.opt_local.breakat = " \t;:,!?"
   end,
