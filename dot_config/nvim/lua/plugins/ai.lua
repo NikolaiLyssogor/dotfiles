@@ -136,6 +136,25 @@ You must:
             },
           })
         end,
+
+        llama_cpp = function()
+          return require("codecompanion.adapters").extend("openai_compatible", {
+            env = { url = "http://localhost:12121" },
+            name = "llama_cpp",
+            formatted_name = "llama.cpp",
+            handlers = {
+              chat_output = function(self, data)
+                local openai = require("codecompanion.adapters.openai")
+                local result = openai.handlers.chat_output(self, data)
+                if result and result.output then
+                  result.output.role = "assistant"
+                end
+                return result
+              end
+            }
+          })
+        end
+
       },
     },
   },
