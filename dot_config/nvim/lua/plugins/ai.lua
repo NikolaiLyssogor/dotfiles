@@ -69,6 +69,16 @@ You must:
         chat = {
           adapter = os.getenv("HOME") == "/Users/nlyssogor" and "openai" or "azure_openai",
           slash_commands = { ["file"] = { opts = { provider = "snacks" } } },
+          roles = {
+            llm = function(adapter)
+              if type(adapter.schema.model.default) == "function" then
+                return adapter.formatted_name .. " (" .. adapter.schema.model.default() .. ")"
+              else
+                return adapter.formatted_name .. " (" .. adapter.schema.model.default .. ")"
+              end
+            end,
+            user = "Me"
+          }
         },
         inline = { adapter = os.getenv("HOME") == "/Users/nlyssogor" and "openai" or "azure_openai" },
       },
