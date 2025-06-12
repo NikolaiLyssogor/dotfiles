@@ -20,11 +20,6 @@ return {
           diff.setup({ source = diff.gen_source.none() })
         end,
       },
-      {
-        "ravitemer/codecompanion-history.nvim",
-        commit = "a924a6c9c778d90bab7b14586f390924ac93e0bb",
-        pin = true,
-      }
     },
     keys = {
       {
@@ -42,9 +37,6 @@ return {
       },
     },
     opts = {
-      extensions = {
-        history = { enabled = true, opts = { picker = "snacks" } }
-      },
       opts = {
         system_prompt = function(opts)
           return [[
