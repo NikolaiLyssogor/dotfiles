@@ -58,6 +58,7 @@ You must:
       },
       display = {
         chat = {
+          show_settings = true,
           window = {
             position = "right",
             width = 0.25,
