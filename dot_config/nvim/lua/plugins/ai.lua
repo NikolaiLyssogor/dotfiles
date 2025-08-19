@@ -139,7 +139,18 @@ You must:
             env = {
               api_key = require("core.utils").gpg_secret_cmd("openai-key.txt.gpg"),
             },
-            schema = { model = { default = "gpt-4.1", choices = { "gpt-4.1", "o4-mini" } } }
+            schema = {
+              model = {
+                default = "gpt-5",
+                choices = {
+                  ["gpt-5"] = { opts = { has_vision = true, can_reason = true } }
+                }
+              },
+              reasoning_effort = {
+                default = "minimal",
+                choices = { "minimal", "low", "medium", "high" }
+              }
+            }
           })
         end,
 
