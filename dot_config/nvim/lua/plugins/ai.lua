@@ -1,7 +1,7 @@
 return {
   {
     "olimorris/codecompanion.nvim",
-    tag = "v17.8.0",
+    commit = "6bc36af3898d6ad3e813f0d19c7e32972731ef37",
     pin = true,
     lazy = false,
     dependencies = {
@@ -10,15 +10,6 @@ return {
         commit = "857c5ac632080dba10aae49dba902ce3abf91b35",
         pin = true,
         branch = "master"
-      },
-      {
-        "echasnovski/mini.diff",
-        commit = "7e268d0241255abaa07b8aa0ddff028f7315fe21",
-        pin = true,
-        config = function()
-          local diff = require("mini.diff")
-          diff.setup({ source = diff.gen_source.none() })
-        end,
       },
     },
     keys = {
@@ -64,13 +55,22 @@ You must:
             width = 0.25,
           },
         },
-        diff = { provider = "mini_diff" },
+        diff = { provider = "inline" },
       },
       strategies = {
         chat = {
           adapter = os.getenv("HOME") == "/Users/nlyssogor" and "openai" or "azure_openai",
           slash_commands = {
             ["file"] = { opts = { provider = "snacks" } },
+          },
+          roles = {
+            llm = function(adapter)
+              if type(adapter.schema.model.default) == "function" then
+                return adapter.formatted_name .. " (" .. adapter.schema.model.default() .. ")"
+              else
+                return adapter.formatted_name .. " (" .. adapter.schema.model.default .. ")"
+              end
+            end,
             -- https://github.com/olimorris/codecompanion.nvim/discussions/1564
             ["diff"] = {
               description = "Show git diff",
@@ -118,15 +118,147 @@ You must:
               end,
               opts = { contains_code = true },
             },
-          },
-          roles = {
-            llm = function(adapter)
-              if type(adapter.schema.model.default) == "function" then
-                return adapter.formatted_name .. " (" .. adapter.schema.model.default() .. ")"
-              else
-                return adapter.formatted_name .. " (" .. adapter.schema.model.default .. ")"
-              end
-            end,
+            -- https://github.com/olimorris/codecompanion.nvim/discussions/1564
+            ["diff"] = {
+              description = "Show git diff",
+              ---@param chat CodeCompanion.Chat
+              callback = function(chat)
+                local snacks = require("snacks")
+
+                snacks.picker.pick({
+                  source = "custom_git_diff_source",
+                  title = "Git diff sources",
+                  items = {
+                    { text = "Working Tree" },
+                    { text = "Staged" },
+                  },
+                  format = function(item, picker)
+                    local ret = {
+                      { item.text, item.text_hl },
+                    } ---@type snacks.picker.Highlight[]
+                    return ret
+                  end,
+                  single_select = true,
+                  layout = {
+                    fullscreen = false,
+                    hidden = { "preview" },
+                  },
+                  confirm = function(picker, item)
+                    picker:close()
+                    local cmd = item.text == "Working Tree" and "git diff --no-ext-diff" or
+                        "git diff --no-ext-diff --staged"
+
+                    local handle = io.popen(cmd)
+                    if handle ~= nil then
+                      local result = handle:read("*a")
+                      handle:close()
+                      if result ~= "" then
+                        chat:add_reference({ role = "user", content = result }, "git", "<diff>")
+                      else
+                        vim.notify("No changes in git diff", vim.log.levels.INFO, { title = "CodeCompanion" })
+                      end
+                    else
+                      vim.notify("Could not retrieve git diff", vim.log.levels.ERROR, { title = "CodeCompanion" })
+                    end
+                  end,
+                })
+              end,
+              opts = { contains_code = true },
+            },
+            -- https://github.com/olimorris/codecompanion.nvim/discussions/1564
+            ["diff"] = {
+              description = "Show git diff",
+              ---@param chat CodeCompanion.Chat
+              callback = function(chat)
+                local snacks = require("snacks")
+
+                snacks.picker.pick({
+                  source = "custom_git_diff_source",
+                  title = "Git diff sources",
+                  items = {
+                    { text = "Working Tree" },
+                    { text = "Staged" },
+                  },
+                  format = function(item, picker)
+                    local ret = {
+                      { item.text, item.text_hl },
+                    } ---@type snacks.picker.Highlight[]
+                    return ret
+                  end,
+                  single_select = true,
+                  layout = {
+                    fullscreen = false,
+                    hidden = { "preview" },
+                  },
+                  confirm = function(picker, item)
+                    picker:close()
+                    local cmd = item.text == "Working Tree" and "git diff --no-ext-diff" or
+                        "git diff --no-ext-diff --staged"
+
+                    local handle = io.popen(cmd)
+                    if handle ~= nil then
+                      local result = handle:read("*a")
+                      handle:close()
+                      if result ~= "" then
+                        chat:add_reference({ role = "user", content = result }, "git", "<diff>")
+                      else
+                        vim.notify("No changes in git diff", vim.log.levels.INFO, { title = "CodeCompanion" })
+                      end
+                    else
+                      vim.notify("Could not retrieve git diff", vim.log.levels.ERROR, { title = "CodeCompanion" })
+                    end
+                  end,
+                })
+              end,
+              opts = { contains_code = true },
+            },
+            -- https://github.com/olimorris/codecompanion.nvim/discussions/1564
+            ["diff"] = {
+              description = "Show git diff",
+              ---@param chat CodeCompanion.Chat
+              callback = function(chat)
+                local snacks = require("snacks")
+
+                snacks.picker.pick({
+                  source = "custom_git_diff_source",
+                  title = "Git diff sources",
+                  items = {
+                    { text = "Working Tree" },
+                    { text = "Staged" },
+                  },
+                  format = function(item, picker)
+                    local ret = {
+                      { item.text, item.text_hl },
+                    } ---@type snacks.picker.Highlight[]
+                    return ret
+                  end,
+                  single_select = true,
+                  layout = {
+                    fullscreen = false,
+                    hidden = { "preview" },
+                  },
+                  confirm = function(picker, item)
+                    picker:close()
+                    local cmd = item.text == "Working Tree" and "git diff --no-ext-diff" or
+                        "git diff --no-ext-diff --staged"
+
+                    local handle = io.popen(cmd)
+                    if handle ~= nil then
+                      local result = handle:read("*a")
+                      handle:close()
+                      if result ~= "" then
+                        chat:add_reference({ role = "user", content = result }, "git", "<diff>")
+                      else
+                        vim.notify("No changes in git diff", vim.log.levels.INFO, { title = "CodeCompanion" })
+                      end
+                    else
+                      vim.notify("Could not retrieve git diff", vim.log.levels.ERROR, { title = "CodeCompanion" })
+                    end
+                  end,
+                })
+              end,
+              opts = { contains_code = true },
+            },
             user = "Me"
           }
         },
