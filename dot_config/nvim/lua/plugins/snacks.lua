@@ -1,7 +1,7 @@
 return {
   {
     "nvim-tree/nvim-web-devicons",
-    commit = "1020869742ecb191f260818234517f4a1515cfe8",
+    commit = "c2599a81ecabaae07c49ff9b45dcd032a8d90f1a",
     pin = true,
   },
   {

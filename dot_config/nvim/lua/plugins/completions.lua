@@ -1,7 +1,7 @@
 return {
   {
     "saghen/blink.cmp",
-    tag = "v1.1.1",
+    tag = "v1.6.0",
     pin = true,
     opts = {
 
