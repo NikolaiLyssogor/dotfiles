@@ -43,6 +43,12 @@ export PYTHONPYCACHEPREFIX="$HOME/.cache/pycache/"
 source <(fzf --zsh)
 export FZF_ALT_C_COMMAND="fd --type d --no-ignore-vcs --exclude __pycache__ --exclude target --exclude node_modules --exclude .git . $HOME/Documents/"
 
+# Configure zsh history
+SAVEHIST=9000
+HISTSIZE=9999
+setopt INC_APPEND_HISTORY # do not wait for shell to exit to append history
+setopt HIST_SAVE_NO_DUPS # do not save duplicate of prior command
+setopt HIST_SAVE_NO_DUPS # omit older duplicates of newer ones
 
 # Always use block cursor on command line
 echo -ne '\e[2 q'
