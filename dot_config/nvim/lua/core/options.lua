@@ -68,7 +68,7 @@ local function set_webdev_settings()
 end
 
 vim.api.nvim_create_autocmd({ "FileType" }, {
-  pattern = { "lua", "html", "css", "javascript", "typescript", "typescriptreact" },
+  pattern = { "lua", "html", "css", "javascript", "typescript", "typescriptreact", "helm", "yaml", "yml" },
   callback = set_webdev_settings,
 })
 
