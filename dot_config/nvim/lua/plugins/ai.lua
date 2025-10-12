@@ -1,7 +1,7 @@
 return {
   {
     "olimorris/codecompanion.nvim",
-    commit = "6bc36af3898d6ad3e813f0d19c7e32972731ef37",
+    commit = "v17.24.0",
     pin = true,
     lazy = false,
     dependencies = {
@@ -77,95 +77,98 @@ You must:
         inline = { adapter = os.getenv("HOME") == "/Users/nlyssogor" and "openai" or "azure_openai" },
       },
       adapters = {
-        opts = { show_defaults = false },
+        http = {
+          opts = { show_defaults = false },
 
-        openai = function()
-          return require("codecompanion.adapters").extend("openai", {
-            env = {
-              api_key = require("core.utils").gpg_secret_cmd("openai-key.txt.gpg"),
-            },
-            schema = {
-              model = {
-                default = "gpt-5",
-                choices = {
-                  ["gpt-5"] = { opts = { has_vision = true, can_reason = true } }
+          openai = function()
+            return require("codecompanion.adapters").extend("openai", {
+              env = {
+                api_key = require("core.utils").gpg_secret_cmd("openai-key.txt.gpg"),
+              },
+              schema = {
+                model = {
+                  default = "gpt-5",
+                  -- choices = {
+                  --   ["gpt-5"] = { opts = { has_vision = true, can_reason = true } }
+                  -- }
+                },
+                reasoning_effort = {
+                  default = "minimal",
+                  choices = { "minimal", "low", "medium", "high" }
+                }
+              }
+            })
+          end,
+
+          azure_openai = function()
+            local utils = require("core.utils")
+            local endpoint = utils.read_file_first_line(os.getenv("HOME") ..
+              "/Documents/secrets/azure-openai-endpoint.txt")
+            local api_key = utils.gpg_secret_cmd("openai-key.txt.gpg")
+
+            return require("codecompanion.adapters").extend("azure_openai", {
+              env = {
+                endpoint = endpoint,
+                api_key = api_key,
+                api_version = "2025-03-01-preview",
+              },
+              schema = {
+                model = { default = "gpt-5" },
+                reasoning_effort = {
+                  default = "minimal",
+                  mapping = "parameters",
+                  choices = { "minimal", "low", "medium", "high" }
                 }
               },
-              reasoning_effort = {
-                default = "minimal",
-                choices = { "minimal", "low", "medium", "high" }
+              headers = {
+                ["Content-Type"] = "application/json",
+                Authorization = "Bearer ${api_key}",
               }
-            }
-          })
-        end,
+            })
+          end,
 
-        azure_openai = function()
-          local utils = require("core.utils")
-          local endpoint = utils.read_file_first_line(os.getenv("HOME") .. "/Documents/secrets/azure-openai-endpoint.txt")
-          local api_key = utils.gpg_secret_cmd("openai-key.txt.gpg")
-
-          return require("codecompanion.adapters").extend("azure_openai", {
-            env = {
-              endpoint = endpoint,
-              api_key = api_key,
-              api_version = "2025-03-01-preview",
-            },
-            schema = {
-              model = { default = "gpt-5" },
-              reasoning_effort = {
-                default = "minimal",
-                mapping = "parameters",
-                choices = { "minimal", "low", "medium", "high" }
-              }
-            },
-            headers = {
-              ["Content-Type"] = "application/json",
-              Authorization = "Bearer ${api_key}",
-            }
-          })
-        end,
-
-        anthropic = function()
-          return require("codecompanion.adapters").extend("anthropic", {
-            env = {
-              api_key = require("core.utils").gpg_secret_cmd("anthropic-key.txt.gpg"),
-            },
-            schema = {
-              model = {
-                default = "claude-3-7-sonnet-latest",
-                choices = { "claude-3-7-sonnet-latest" }
-              }
-            }
-          })
-        end,
-
-        ollama = function()
-          return require("codecompanion.adapters").extend("ollama", {
-            schema = {
-              model = {
-                default = os.getenv("HOME") == "/Users/nlyssogor" and "qwen2.5-coder:14b" or "qwen2.5-coder:32b",
+          anthropic = function()
+            return require("codecompanion.adapters").extend("anthropic", {
+              env = {
+                api_key = require("core.utils").gpg_secret_cmd("anthropic-key.txt.gpg"),
               },
-            },
-          })
-        end,
+              schema = {
+                model = {
+                  default = "claude-3-7-sonnet-latest",
+                  choices = { "claude-3-7-sonnet-latest" }
+                }
+              }
+            })
+          end,
 
-        llama_cpp = function()
-          return require("codecompanion.adapters").extend("openai_compatible", {
-            env = { url = "http://localhost:12121" },
-            name = "llama_cpp",
-            formatted_name = "llama.cpp",
-            handlers = {
-              chat_output = function(self, data)
-                local openai = require("codecompanion.adapters.openai")
-                local result = openai.handlers.chat_output(self, data)
-                if result and result.output then
-                  result.output.role = "assistant"
+          ollama = function()
+            return require("codecompanion.adapters").extend("ollama", {
+              schema = {
+                model = {
+                  default = os.getenv("HOME") == "/Users/nlyssogor" and "qwen2.5-coder:14b" or "qwen2.5-coder:32b",
+                },
+              },
+            })
+          end,
+
+          llama_cpp = function()
+            return require("codecompanion.adapters").extend("openai_compatible", {
+              env = { url = "http://localhost:12121" },
+              name = "llama_cpp",
+              formatted_name = "llama.cpp",
+              handlers = {
+                chat_output = function(self, data)
+                  local openai = require("codecompanion.adapters.openai")
+                  local result = openai.handlers.chat_output(self, data)
+                  if result and result.output then
+                    result.output.role = "assistant"
+                  end
+                  return result
                 end
-                return result
-              end
-            }
-          })
-        end
+              }
+            })
+          end
+        },
 
       },
     },
