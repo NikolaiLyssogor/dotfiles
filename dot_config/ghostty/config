@@ -25,6 +25,8 @@ mouse-hide-while-typing = true
 
 # quick terminal
 keybind = cmd+j=toggle_quick_terminal
+quick-terminal-size = 75%,75%
 quick-terminal-position = center
 quick-terminal-animation-duration = 0
+quick-terminal-autohide = false
 quick-terminal-space-behavior = remain
