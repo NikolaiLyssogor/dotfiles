@@ -9,6 +9,7 @@ export MANPAGER='nvim +Man!'
 {{ if eq .chezmoi.hostname "ml0221998" -}}
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="/Users/nqxl/Library/Python3.9/bin:$PATH"
+export JAVA_HOME=$(/usr/libexec/java_home)
 {{ else -}}
 export NEOVIM_ENV="home"
 alias curc="ssh nily9199@login.rc.colorado.edu"
