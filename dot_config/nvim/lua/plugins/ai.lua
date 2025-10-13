@@ -88,9 +88,7 @@ You must:
               schema = {
                 model = {
                   default = "gpt-5",
-                  -- choices = {
-                  --   ["gpt-5"] = { opts = { has_vision = true, can_reason = true } }
-                  -- }
+                  choices = { ["gpt-5"] = { opts = { stream = true } } }
                 },
                 reasoning_effort = {
                   default = "minimal",
