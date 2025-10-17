@@ -19,6 +19,10 @@ alias cdmd="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes"
 
 bindkey -v
 
+# Make backspace always delete previous char in insert mode
+bindkey -M viins '^?' backward-delete-char   # DEL (most terminals)
+bindkey -M viins '^H' backward-delete-char   # BS (some terminals)
+
 # Yank to the system clipboard
 function vi-yank-xclip {
     zle vi-yank
