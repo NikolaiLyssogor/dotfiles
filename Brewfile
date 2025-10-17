@@ -1,7 +1,10 @@
+# Programming languages
+brew "node@24"
+brew "python@3.14"
+
 # Developer tools
 brew "neovim"
 brew "uv"
-brew "node@24"
 brew "difftastic"
 brew "jq"
 brew "fd"
