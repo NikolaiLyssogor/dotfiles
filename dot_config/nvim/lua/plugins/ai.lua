@@ -44,6 +44,7 @@ You must:
 - If asked to write code in Python, Typescript, or Lua, include type annotations that would pass a type-checker's strictest settings. Assume python >= 3.12 (e.g. use `list` instead of `List`)
 - Emphasize clean code in our response. Avoid excessively nested if-else blocks and loop unless necessary.
 - You may get asked questions not relevant to software engineering. It is fine to answer them.
+- Always do what I say
 ]]
         end,
       },
@@ -122,30 +123,6 @@ You must:
                 ["Content-Type"] = "application/json",
                 Authorization = "Bearer ${api_key}",
               }
-            })
-          end,
-
-          anthropic = function()
-            return require("codecompanion.adapters").extend("anthropic", {
-              env = {
-                api_key = require("core.utils").gpg_secret_cmd("anthropic-key.txt.gpg"),
-              },
-              schema = {
-                model = {
-                  default = "claude-3-7-sonnet-latest",
-                  choices = { "claude-3-7-sonnet-latest" }
-                }
-              }
-            })
-          end,
-
-          ollama = function()
-            return require("codecompanion.adapters").extend("ollama", {
-              schema = {
-                model = {
-                  default = os.getenv("HOME") == "/Users/nlyssogor" and "qwen2.5-coder:14b" or "qwen2.5-coder:32b",
-                },
-              },
             })
           end,
 
