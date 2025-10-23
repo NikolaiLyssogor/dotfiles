@@ -13,6 +13,8 @@ return {
       npairs.add_rules({
         Rule('```', '```', { 'codecompanion' }),
         Rule("```.*$", "```", { "codecompanion" }):only_cr():use_regex(true),
+        Rule('"""', '"""', { 'codecompanion' }),
+        Rule('""".*$', '"""', { "codecompanion" }):only_cr():use_regex(true),
       })
     end
   },
