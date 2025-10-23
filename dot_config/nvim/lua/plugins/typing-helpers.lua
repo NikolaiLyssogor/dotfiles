@@ -4,7 +4,17 @@ return {
     commit = "3d02855468f94bf435db41b661b58ec4f48a06b7",
     pin = true,
     event = "InsertEnter",
-    opts = { map_cr = true }, -- this is equalent to setup({}) function
+    config = function()
+      local npairs = require('nvim-autopairs')
+      npairs.setup({ map_cr = true })
+
+      -- Add triple backtick rule to CodeCompanion
+      local Rule = require('nvim-autopairs.rule')
+      npairs.add_rules({
+        Rule('```', '```', { 'codecompanion' }),
+        Rule("```.*$", "```", { "codecompanion" }):only_cr():use_regex(true),
+      })
+    end
   },
   {
     "kylechui/nvim-surround",
