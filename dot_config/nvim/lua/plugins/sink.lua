@@ -10,7 +10,7 @@ return {
     config = function()
       require("sink").setup({
         paths = {
-          ["/Users/nlyssogor/Documents/research/sync/HIA/"] = {
+          ["/Users/nlyssogor/Documents/research/sync/HIA"] = {
             push = {
               args = {
                 "-avz",
@@ -30,6 +30,18 @@ return {
                 "/Users/nlyssogor/Documents/research/sync/HIA/notebooks/",
               },
             },
+          },
+          ["/Users/nlyssogor/Documents/personal-projects/EyeDriver"] = {
+            push = {
+              args = {
+                "-avz",
+                "--delete",
+                "--exclude-from",
+                "/Users/nlyssogor/Documents/research/sync/rsync-exclude.txt",
+                "/Users/nlyssogor/Documents/personal-projects/EyeDriver/controller/",
+                "nlyssogor@raspberrypi.local:/home/nlyssogor/projects/EyeDriver/controller/",
+              }
+            }
           },
           ["/Users/nlyssogor/Documents/research/sync/learn-cuda"] = {
             push = {
