@@ -19,15 +19,6 @@ return {
     end
   },
   {
-    "kylechui/nvim-surround",
-    tag = "v2.3.2",
-    pin = true,
-    event = "VeryLazy",
-    config = function()
-      require("nvim-surround").setup()
-    end,
-  },
-  {
     "towolf/vim-helm",
     commit = "2c8525fd98e57472769d137317bca83e477858ce",
     pin = true
