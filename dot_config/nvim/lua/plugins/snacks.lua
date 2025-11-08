@@ -45,7 +45,6 @@ return {
     opts = {
 
       explorer = {},
-      scroll = {},
       picker = {
         sources = {
           explorer = {
