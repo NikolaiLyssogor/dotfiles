@@ -86,15 +86,17 @@ You must:
                 api_key = require("core.utils").gpg_secret_cmd("openai-key.txt.gpg"),
               },
               schema = {
-                model = {
-                  default = "gpt-5",
-                  choices = { ["gpt-5"] = { opts = { stream = true } } }
+                model             = {
+                  default = "gpt-5.2",
+                  choices = { "gpt-5.2" }
                 },
-                reasoning_effort = {
-                  default = "minimal",
-                  choices = { "minimal", "low", "medium", "high" }
-                }
-              }
+                reasoning_effort  = {
+                  default = "low",
+                  choices = { "none", "low", "medium", "high", "xhigh" },
+                  condition = function()
+                    return true
+                  end
+                },
             })
           end,
 
@@ -108,15 +110,15 @@ You must:
               env = {
                 endpoint = endpoint,
                 api_key = api_key,
-                api_version = "2025-03-01-preview",
+                api_version = "2025-04-01-preview",
               },
               schema = {
-                model = { default = "gpt-5" },
-                reasoning_effort = {
-                  default = "minimal",
+                model             = { default = "gpt-5.2" },
+                reasoning_effort  = {
+                  default = "low",
                   mapping = "parameters",
-                  choices = { "minimal", "low", "medium", "high" }
-                }
+                  choices = { "none", "low", "medium", "high", "xhigh" }
+                },
               },
               headers = {
                 ["Content-Type"] = "application/json",
