@@ -23,6 +23,7 @@ brew "pyright"
 brew "lua-language-server"
 brew "typescript-language-server"
 brew "tailwindcss-language-server"
+brew "hashicorp/tap/terraform-ls"
 
 # Optional: chafa (terminal image viewer)
 brew "chafa"
