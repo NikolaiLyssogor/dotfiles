@@ -146,20 +146,6 @@ You must:
             })
           end,
 
-          anthropic = function()
-            return require("codecompanion.adapters").extend("anthropic", {
-              env = {
-                api_key = require("core.utils").gpg_secret_cmd("anthropic-key.txt.gpg"),
-              },
-              schema = {
-                model = {
-                  default = "claude-3-7-sonnet-latest",
-                  choices = { "claude-3-7-sonnet-latest" }
-                }
-              }
-            })
-          end,
-
           ollama = function()
             return require("codecompanion.adapters").extend("ollama", {
               schema = {
