@@ -1,7 +1,7 @@
 return {
   {
     "olimorris/codecompanion.nvim",
-    tag = "v17.30.0",
+    tag = "v17.32.0",
     pin = true,
     dependencies = {
       {
