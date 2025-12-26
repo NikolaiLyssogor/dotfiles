@@ -97,6 +97,16 @@ You must:
                     return true
                   end
                 },
+                -- NOTE: These should be `enabled` instead of `condition` in v18
+                frequency_penalty = { condition = function() return false end },
+                logit_bias        = { condition = function() return false end },
+                max_tokens        = { condition = function() return false end },
+                presence_penalty  = { condition = function() return false end },
+                stop              = { condition = function() return false end },
+                temperature       = { condition = function() return false end },
+                top_p             = { condition = function() return false end },
+                user              = { condition = function() return false end },
+              },
             })
           end,
 
@@ -119,6 +129,15 @@ You must:
                   mapping = "parameters",
                   choices = { "none", "low", "medium", "high", "xhigh" }
                 },
+                -- NOTE: These should be `enabled` instead of `condition` in v18
+                frequency_penalty = { condition = function() return false end },
+                logit_bias        = { condition = function() return false end },
+                max_tokens        = { condition = function() return false end },
+                presence_penalty  = { condition = function() return false end },
+                stop              = { condition = function() return false end },
+                temperature       = { condition = function() return false end },
+                top_p             = { condition = function() return false end },
+                user              = { condition = function() return false end },
               },
               headers = {
                 ["Content-Type"] = "application/json",
