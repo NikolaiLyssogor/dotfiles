@@ -15,6 +15,8 @@ scrollback-limit = 40000000
 
 window-save-state = always
 
+keybind = cmd+shift+j=write_scrollback_file:paste
+
 # adjust split sizes
 keybind = cmd+l=resize_split:right,10
 keybind = cmd+h=resize_split:left,10
