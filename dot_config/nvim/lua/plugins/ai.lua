@@ -91,7 +91,7 @@ You must:
                   choices = { "gpt-5.2" }
                 },
                 reasoning_effort  = {
-                  default = "low",
+                  default = "none",
                   choices = { "none", "low", "medium", "high", "xhigh" },
                   condition = function()
                     return true
@@ -125,7 +125,7 @@ You must:
               schema = {
                 model             = { default = "gpt-5.2" },
                 reasoning_effort  = {
-                  default = "low",
+                  default = "none",
                   mapping = "parameters",
                   choices = { "none", "low", "medium", "high", "xhigh" }
                 },
