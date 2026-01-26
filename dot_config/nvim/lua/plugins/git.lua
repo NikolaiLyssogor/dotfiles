@@ -12,6 +12,13 @@ return {
       { "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>",      desc = "[a]dd hunk" },
       { "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<CR>", desc = "[u]ndo stage hunk" },
       {
+        "<leader>gb",
+        function()
+          Snacks.picker.git_branches({ confirm = "gitsigns_change_base" })
+        end,
+        desc = "change [b]ase"
+      },
+      {
         "<leader>gq",
         function()
           local gitsigns = require("gitsigns")

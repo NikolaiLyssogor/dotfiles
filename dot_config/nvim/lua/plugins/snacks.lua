@@ -46,6 +46,14 @@ return {
 
       explorer = {},
       picker = {
+        actions = {
+          gitsigns_change_base = function (picker, item)
+            picker:close()
+            local gitsigns = require("gitsigns")
+            -- Second arg indicates change base globally
+            gitsigns.change_base(item.branch, true)
+          end
+        },
         sources = {
           explorer = {
             auto_close = true,
