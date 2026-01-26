@@ -1,8 +1,8 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
-    tag = "v1.0.1",
-    pin = true,
+    tag = "v2.0.0",
+    pin = false,
     lazy = false,
     keys = {
       { "<leader>gd", "<cmd>Gitsigns preview_hunk_inline<cr>",    desc = "[d]iff preview" },
@@ -12,8 +12,5 @@ return {
       { "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>",      desc = "[a]dd hunk" },
       { "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<CR>", desc = "[u]ndo stage hunk" },
     },
-    config = function()
-      require("gitsigns").setup()
-    end,
   },
 }
