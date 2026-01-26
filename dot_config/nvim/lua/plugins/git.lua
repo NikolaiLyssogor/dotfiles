@@ -5,18 +5,27 @@ return {
     pin = false,
     lazy = false,
     keys = {
-      { "<leader>gd", "<cmd>Gitsigns preview_hunk_inline<cr>",    desc = "[d]iff preview" },
-      { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",      desc = "[r]eset hunk" },
-      { "<leader>gn", "<cmd>Gitsigns next_hunk<CR>",       desc = "[n]ext hunk" },
-      { "<leader>gp", "<cmd>Gitsigns prev_hunk<CR>",       desc = "[p]revious hunk" },
-      { "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>",      desc = "[a]dd hunk" },
-      { "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<CR>", desc = "[u]ndo stage hunk" },
+      { "<leader>gd", "<cmd>Gitsigns preview_hunk_inline<cr>", desc = "[d]iff preview" },
+      { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",          desc = "[r]eset hunk" },
+      { "<leader>gn", "<cmd>Gitsigns next_hunk<CR>",           desc = "[n]ext hunk" },
+      { "<leader>gp", "<cmd>Gitsigns prev_hunk<CR>",           desc = "[p]revious hunk" },
+      { "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>",          desc = "[a]dd hunk" },
+      { "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<CR>",     desc = "[u]ndo stage hunk" },
       {
         "<leader>gb",
         function()
           Snacks.picker.git_branches({ confirm = "gitsigns_change_base" })
+          require("core.highlights").enable_review_mode()
         end,
         desc = "change [b]ase"
+      },
+      {
+        "<leader>gR",
+        function()
+          require("gitsigns").reset_base(true)
+          require("core.highlights").disable_review_mode()
+        end,
+        desc = "[R]eset base"
       },
       {
         "<leader>gq",
