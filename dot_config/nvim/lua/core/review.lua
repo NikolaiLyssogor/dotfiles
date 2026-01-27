@@ -1,12 +1,12 @@
 local api = vim.api
 
 ---@class HighlightsModule
----@field active boolean
+---@field private _active boolean
 ---@field private _saved table<string, vim.api.keyset.get_hl_info|false>
 ---@field private _purple string
 ---@field private _groups string[]
 local M = {
-  active = false,
+  _active = false,
   _saved = {},
   _purple = "#9b42f5",
   _groups = {},
@@ -69,6 +69,8 @@ end
 ---@param purple? string
 ---@param recapture? boolean
 function M.enable_review_mode(purple, recapture)
+  Snacks.picker.git_branches({ confirm = "gitsigns_change_base" })
+
   if purple then
     M._purple = purple
   end
@@ -77,7 +79,7 @@ function M.enable_review_mode(purple, recapture)
     M._capture()
   end
 
-  M.active = true
+  M._active = true
 
   -- Force all GitSigns sign-related groups to purple.
   -- Setting fg explicitly breaks any links and makes the result deterministic.
@@ -87,9 +89,11 @@ function M.enable_review_mode(purple, recapture)
 end
 
 function M.disable_review_mode()
-  if not M.active then
+  if not M._active then
     return
   end
+
+  require("gitsigns").reset_base(true)
 
   for name, saved in pairs(M._saved) do
     if saved == false then
@@ -100,7 +104,18 @@ function M.disable_review_mode()
     end
   end
 
-  M.active = false
+  M._active = false
+  vim.notify("Review mode is disabled.", vim.log.levels.INFO)
+end
+
+---@param purple? string
+---@param recapture? boolean
+function M.toggle_review_mode(purple, recapture)
+  if not M._active then
+    M.enable_review_mode(purple, recapture)
+  else
+    M.disable_review_mode()
+  end
 end
 
 ---@param opts? { purple?: string }
@@ -118,7 +133,7 @@ function M.setup(opts)
     callback = function()
       M._saved = {}
 
-      if M.active then
+      if M._active then
         vim.schedule(function()
           M.enable_review_mode(M._purple, true)
         end)

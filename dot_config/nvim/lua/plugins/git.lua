@@ -12,19 +12,7 @@ return {
       { "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>",          desc = "[a]dd hunk" },
       { "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<CR>",     desc = "[u]ndo stage hunk" },
       {
-        "<leader>gR",
-        function()
-          local review_mode = require("core.review")
-
-          if not review_mode.active then
-            Snacks.picker.git_branches({ confirm = "gitsigns_change_base" })
-            review_mode.enable_review_mode()
-          else
-            require("gitsigns").reset_base(true)
-            review_mode.disable_review_mode()
-          end
-        end,
-        desc = "toggle [R]eview mode"
+        "<leader>gR", require("core.review").toggle_review_mode, desc = "toggle [R]eview mode"
       },
       {
         "<leader>gq",
