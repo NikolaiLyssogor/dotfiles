@@ -131,4 +131,4 @@ vim.api.nvim_set_keymap("n", "<C-u>", "10<C-u>", { noremap = true, silent = true
 vim.o.laststatus = 3
 
 -- Set git sign color for code review mode
-require("core.highlights").setup({ purple = "#9b42f5" })
+require("core.review").setup({ purple = "#9b42f5" })

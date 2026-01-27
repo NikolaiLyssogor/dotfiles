@@ -1,12 +1,12 @@
 local api = vim.api
 
 ---@class HighlightsModule
----@field private _active boolean
+---@field active boolean
 ---@field private _saved table<string, vim.api.keyset.get_hl_info|false>
 ---@field private _purple string
 ---@field private _groups string[]
 local M = {
-  _active = false,
+  active = false,
   _saved = {},
   _purple = "#9b42f5",
   _groups = {},
@@ -77,7 +77,7 @@ function M.enable_review_mode(purple, recapture)
     M._capture()
   end
 
-  M._active = true
+  M.active = true
 
   -- Force all GitSigns sign-related groups to purple.
   -- Setting fg explicitly breaks any links and makes the result deterministic.
@@ -87,7 +87,7 @@ function M.enable_review_mode(purple, recapture)
 end
 
 function M.disable_review_mode()
-  if not M._active then
+  if not M.active then
     return
   end
 
@@ -100,7 +100,7 @@ function M.disable_review_mode()
     end
   end
 
-  M._active = false
+  M.active = false
 end
 
 ---@param opts? { purple?: string }
@@ -118,7 +118,7 @@ function M.setup(opts)
     callback = function()
       M._saved = {}
 
-      if M._active then
+      if M.active then
         vim.schedule(function()
           M.enable_review_mode(M._purple, true)
         end)
