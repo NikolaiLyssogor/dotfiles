@@ -43,15 +43,15 @@ return {
       }
     },
     opts = {
-
       explorer = {},
       picker = {
         actions = {
-          gitsigns_change_base = function (picker, item)
+          gitsigns_change_base = function(picker, item)
             picker:close()
             local gitsigns = require("gitsigns")
             -- Second arg indicates change base globally
             gitsigns.change_base(item.branch, true)
+            vim.notify("Review mode is enabled.", vim.log.levels.INFO)
           end
         },
         sources = {
