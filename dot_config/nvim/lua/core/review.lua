@@ -93,8 +93,6 @@ function M.disable_review_mode()
     return
   end
 
-  require("gitsigns").reset_base(true)
-
   for name, saved in pairs(M._saved) do
     if saved == false then
       -- Clear if it didn't exist when captured.
@@ -104,7 +102,9 @@ function M.disable_review_mode()
     end
   end
 
+  require("gitsigns").reset_base(true)
   M._active = false
+
   vim.notify("Review mode is disabled.", vim.log.levels.INFO)
 end
 
