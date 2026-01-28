@@ -59,5 +59,6 @@ return {
         desc = "[q]uickfix list hunks"
       },
     },
+    opts = { attach_to_untracked = true }
   },
 }
