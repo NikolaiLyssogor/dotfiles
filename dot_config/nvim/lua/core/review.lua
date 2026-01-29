@@ -66,6 +66,42 @@ function M._capture()
   end
 end
 
+---Load changed files from the qflist into a buffer.
+---@param qf table
+function M.load_changed_files(qf)
+  local items = type(qf) == "table" and qf.items or nil
+  if type(items) ~= "table" then
+    return
+  end
+
+  ---@type table<integer, true>
+  local seen = {}
+  local MAX_FILE_SIZE = 1024 * 1024
+
+  for _, item in ipairs(items) do
+    if type(item) == "table" then
+      local bufnr = item.bufnr
+      if type(bufnr) == "number" and bufnr > 0 and not seen[bufnr] then
+        seen[bufnr] = true
+        vim.schedule(function()
+          local filename = vim.api.nvim_buf_get_name(bufnr)
+
+          if filename and filename ~= "" then
+            local size = vim.fn.getfsize(filename)
+            -- getfsize returns -1 if file doesn't exist, -2 if directory
+            if size >= 0 and size <= MAX_FILE_SIZE then
+              vim.fn.bufload(bufnr)
+            end
+          else
+            -- If we can't determine size, load it anyway
+            vim.fn.bufload(bufnr)
+          end
+        end)
+      end
+    end
+  end
+end
+
 ---@param purple? string
 ---@param recapture? boolean
 function M.enable_review_mode(purple, recapture)

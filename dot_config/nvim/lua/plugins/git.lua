@@ -18,6 +18,7 @@ return {
         "<leader>gq",
         function()
           local gitsigns = require("gitsigns")
+          local review_mode = require("core.review")
 
           local before = vim.fn.getqflist({ id = 0 })
           local before_id = before.id
@@ -42,6 +43,7 @@ return {
                 vim.notify("No hunks.", vim.log.levels.WARN)
                 return
               end
+              review_mode.load_changed_files(qf)
               Snacks.picker.qflist()
               return
             end
