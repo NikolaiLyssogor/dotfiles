@@ -2,7 +2,7 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     tag = "v2.0.0",
-    pin = false,
+    pin = true,
     lazy = false,
     keys = {
       { "<leader>gd", "<cmd>Gitsigns preview_hunk_inline<cr>", desc = "[d]iff preview" },
@@ -49,7 +49,7 @@ return {
             end
 
             if timed_out() then
-              vim.notify("Operation to set qickfix list with git hunks timed out.", vim.log.levels.ERROR)
+              vim.notify("Operation to set quickfix list with git hunks timed out.", vim.log.levels.ERROR)
               return
             end
 
