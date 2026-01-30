@@ -2,26 +2,23 @@ return {
   {
     "lewis6991/gitsigns.nvim",
     tag = "v2.0.0",
-    pin = false,
+    pin = true,
     lazy = false,
     keys = {
-      { "<leader>gd", "<cmd>Gitsigns preview_hunk_inline<cr>",    desc = "[d]iff preview" },
-      { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",      desc = "[r]eset hunk" },
-      { "<leader>gn", "<cmd>Gitsigns next_hunk<CR>",       desc = "[n]ext hunk" },
-      { "<leader>gp", "<cmd>Gitsigns prev_hunk<CR>",       desc = "[p]revious hunk" },
-      { "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>",      desc = "[a]dd hunk" },
-      { "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<CR>", desc = "[u]ndo stage hunk" },
+      { "<leader>gd", "<cmd>Gitsigns preview_hunk_inline<cr>", desc = "[d]iff preview" },
+      { "<leader>gr", "<cmd>Gitsigns reset_hunk<cr>",          desc = "[r]eset hunk" },
+      { "g]",         "<cmd>Gitsigns next_hunk<CR>",           desc = "[n]ext hunk" },
+      { "g[",         "<cmd>Gitsigns prev_hunk<CR>",           desc = "[p]revious hunk" },
+      { "<leader>gs", "<cmd>Gitsigns stage_hunk<CR>",          desc = "[a]dd hunk" },
+      { "<leader>gu", "<cmd>Gitsigns undo_stage_hunk<CR>",     desc = "[u]ndo stage hunk" },
       {
-        "<leader>gb",
-        function()
-          Snacks.picker.git_branches({ confirm = "gitsigns_change_base" })
-        end,
-        desc = "change [b]ase"
+        "<leader>gR", require("core.review").toggle_review_mode, desc = "toggle [R]eview mode"
       },
       {
         "<leader>gq",
         function()
           local gitsigns = require("gitsigns")
+          local review_mode = require("core.review")
 
           local before = vim.fn.getqflist({ id = 0 })
           local before_id = before.id
@@ -46,12 +43,13 @@ return {
                 vim.notify("No hunks.", vim.log.levels.WARN)
                 return
               end
+              review_mode.load_changed_files(qf)
               Snacks.picker.qflist()
               return
             end
 
             if timed_out() then
-              vim.notify("Operation to set qickfix list with git hunks timed out.", vim.log.levels.ERROR)
+              vim.notify("Operation to set quickfix list with git hunks timed out.", vim.log.levels.ERROR)
               return
             end
 
@@ -63,5 +61,6 @@ return {
         desc = "[q]uickfix list hunks"
       },
     },
+    opts = { attach_to_untracked = true }
   },
 }
