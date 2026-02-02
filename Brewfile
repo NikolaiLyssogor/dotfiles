@@ -4,6 +4,7 @@ brew "python@3.14"
 
 # Developer tools
 brew "neovim"
+brew "tmux"
 brew "uv"
 brew "difftastic"
 brew "jq"
