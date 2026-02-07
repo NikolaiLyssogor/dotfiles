@@ -1,5 +1,47 @@
 #!/bin/bash
-brew bundle install
+
+#############################
+##### Homebrew packages #####
+#############################
+
+# Programming languages
+brew install "openjdk@25"
+brew install "node@24"
+brew install "python@3.14"
+
+# Package managers
+brew install "maven"
+brew install "uv"
+
+# Developer tools
+brew install "neovim"
+brew install "tmux"
+brew install "difftastic"
+brew install "jq"
+brew install "fd"
+brew install "ripgrep"
+brew install "wget"
+brew install "fzf"
+brew install "postgresql@17"
+brew install "chafa"
+
+# Linters 
+brew install "ruff"
+
+# Formatters
+brew install "stylua"
+
+# Type-checkers and language servers
+brew install "jdtls"
+brew install "pyright"
+brew install "lua-language-server"
+brew install "typescript-language-server"
+brew install "tailwindcss-language-server"
+brew install "hashicorp/tap/terraform-ls"
+
+##########################
+##### Java LSP setup #####
+##########################
 
 # Download lombok.jar if not already present
 LOMBOK_PATH="$HOME/.local/share/java/lombok.jar"
