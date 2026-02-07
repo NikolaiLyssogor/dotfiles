@@ -1,6 +1,7 @@
 eval "$(starship init zsh)"
 export EDITOR=nvim
 
+# Command aliases
 alias icat="chafa"
 alias dc='docker compose'
 alias ls='ls --color=auto'
@@ -10,9 +11,15 @@ alias cdmd="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes"
 # Use neovim as man pager
 export MANPAGER='nvim +Man!'
 
-export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
-export PATH="/Users/nqxl/Library/Python3.9/bin:$PATH"
-export JAVA_HOME=$(/usr/libexec/java_home)
+# Java PATH config
+export JAVA_HOME="/opt/homebrew/opt/openjdk@25/libexec/openjdk.jdk/Contents/Home"
+export PATH="$JAVA_HOME/bin:$PATH"
+
+# Make sure psql, pg_restore, pg_dump, etc. is on PATH
+export PATH="/opt/homebrew/opt/postgresql@17/bin:$PATH"
+
+# Common place for tools to get installed
+export PATH="$PATH:$HOME/.local/bin"
 
 bindkey -v
 
@@ -28,9 +35,6 @@ function vi-yank-xclip {
 
 zle -N vi-yank-xclip
 bindkey -M vicmd 'y' vi-yank-xclip
-
-# for pipx
-export PATH="$PATH:/Users/nlyssogor/.local/bin"
 
 # docker completions
 fpath=($HOME/.docker/completions $fpath)

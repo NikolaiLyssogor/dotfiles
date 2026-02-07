@@ -4,6 +4,56 @@ vim.lsp.config("*", {
 	root_markers = { ".git" },
 })
 
+-- jdtls configured differently since it's managed by nvim-jdtls
+local project_name = vim.fn.fnamemodify(vim.fn.getcwd(), ":p:h:t")
+local workspace_dir = vim.fn.stdpath("data") .. "/jdtls-workspace/" .. project_name
+
+local home = vim.uv.os_homedir()
+local lombok_jar = home .. "/.local/share/java/lombok.jar"
+
+-- Homebrew jdtls layout (Apple Silicon)
+local jdtls_root = "/opt/homebrew/opt/jdtls/libexec"
+local plugins_dir = jdtls_root .. "/plugins"
+
+-- Find the Equinox launcher dynamically (versioned filename)
+local equinox_candidates = vim.fs.find(function(name, path)
+  return name:match("^org%.eclipse%.equinox%.launcher_.+%.jar$") ~= nil
+end, { path = plugins_dir, type = "file", limit = 10 })
+
+assert(#equinox_candidates > 0, "jdtls: Equinox launcher jar not found under: " .. plugins_dir)
+
+-- Prefer the lexicographically greatest one
+table.sort(equinox_candidates)
+local equinox_launcher = equinox_candidates[#equinox_candidates]
+
+vim.lsp.config("jdtls", {
+  cmd = {
+    "java",
+
+    "-Declipse.application=org.eclipse.jdt.ls.core.id1",
+    "-Dosgi.bundles.defaultStartLevel=4",
+    "-Declipse.product=org.eclipse.jdt.ls.core.product",
+    "-Dlog.protocol=true",
+    "-Dlog.level=ALL",
+    "-javaagent:" .. lombok_jar,
+    "-Xms1g",
+    "--add-modules=ALL-SYSTEM",
+    "--add-opens",
+    "java.base/java.util=ALL-UNNAMED",
+    "--add-opens",
+    "java.base/java.lang=ALL-UNNAMED",
+
+    "-jar",
+    equinox_launcher,
+
+    "-configuration",
+    jdtls_root .. "/config_mac_arm",
+
+    "-data",
+    workspace_dir,
+  }
+})
+
 vim.api.nvim_create_autocmd("LspAttach", {
 	callback = function(args)
 		-- lsp keymaps
