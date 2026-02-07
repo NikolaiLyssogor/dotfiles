@@ -1,7 +1,7 @@
 return {
   {
     "lewis6991/gitsigns.nvim",
-    tag = "v2.0.0",
+    tag = "1ce96a464fdbc24208e24c117e2021794259005d",
     pin = true,
     lazy = false,
     keys = {
