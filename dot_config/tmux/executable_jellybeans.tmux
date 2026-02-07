@@ -66,7 +66,7 @@ main() {
   # Status options
   set "status" "on"
   set "status-justify" "left"
-  set "status-position" "bottom"
+  set "status-position" "top"
   set "status-left-length" "100"
   set "status-right-length" "100"
   set "status-style" "fg=$thm_fg,bg=$thm_bg"
