@@ -1,21 +1,18 @@
 eval "$(starship init zsh)"
 export EDITOR=nvim
+
 alias icat="chafa"
 alias dc='docker compose'
 alias ls='ls --color=auto'
+alias curc="ssh nily9199@login.rc.colorado.edu"
+alias cdmd="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes"
 
 # Use neovim as man pager
 export MANPAGER='nvim +Man!'
 
-{{ if eq .chezmoi.hostname "ml0221998" -}}
 export PATH="/opt/homebrew/opt/postgresql@16/bin:$PATH"
 export PATH="/Users/nqxl/Library/Python3.9/bin:$PATH"
 export JAVA_HOME=$(/usr/libexec/java_home)
-{{ else -}}
-export NEOVIM_ENV="home"
-alias curc="ssh nily9199@login.rc.colorado.edu"
-alias cdmd="cd ~/Library/Mobile\ Documents/iCloud~md~obsidian/Documents/notes"
-{{ end -}}
 
 bindkey -v
 
